@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vote Smart India 🗳️</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-emoji">🗳️</span>
+            <h1 id="app-title" data-i18n="appTitle">Vote Smart India</h1>
+        </div>
+        <button id="lang-toggle" class="lang-toggle">English</button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+        
+        <!-- Tab 1: Home (Countdown) -->
+        <section id="tab-home" class="tab-content active">
+            <div class="hero-section">
+                <h2 data-i18n="homeHeroTitle" class="hero-title">अगला लोकसभा चुनाव 2029</h2>
+                <div class="countdown-container">
+                    <div class="time-box"><span id="cd-days">--</span><small data-i18n="days">दिन</small></div>
+                    <div class="time-box"><span id="cd-hours">--</span><small data-i18n="hours">घंटे</small></div>
+                    <div class="time-box"><span id="cd-mins">--</span><small data-i18n="minutes">मिनट</small></div>
+                    <div class="time-box"><span id="cd-secs">--</span><small data-i18n="seconds">सेकंड</small></div>
+                </div>
+                <p data-i18n="homeHeroSubtitle" class="hero-subtitle">आपका वोट भारत का भविष्य तय करता है!</p>
+            </div>
+
+            <div class="quick-links">
+                <button class="nav-btn-large" onclick="app.switchTab('guide')">
+                    <span class="icon">📖</span> <span data-i18n="navGuide">वोटर गाइड</span>
+                </button>
+                <button class="nav-btn-large" onclick="app.switchTab('checklist')">
+                    <span class="icon">✅</span> <span data-i18n="navChecklist">चेकलिस्ट</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Tab 2: Timeline -->
+        <section id="tab-timeline" class="tab-content">
+            <h2 class="section-title" data-i18n="timelineTitle">चुनाव प्रक्रिया</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="timeline-progress"></div>
+            </div>
+            <div id="timeline-list" class="timeline-list">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Tab 3: Guide -->
+        <section id="tab-guide" class="tab-content">
+            <h2 class="section-title" data-i18n="guideTitle">पहली बार वोटरों के लिए गाइड</h2>
+            <div id="guide-list" class="guide-list">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Tab 4: Checklist -->
+        <section id="tab-checklist" class="tab-content">
+            <h2 class="section-title" data-i18n="checklistTitle">वोटर चेकलिस्ट</h2>
+            
+            <div class="checklist-tabs">
+                <button class="checklist-tab-btn active" data-type="firstTime" data-i18n="firstTimeVoterTab">पहली बार वोटर</button>
+                <button class="checklist-tab-btn" data-type="general" data-i18n="generalVoterTab">सामान्य वोटर</button>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="checklist-progress"></div>
+            </div>
+            <p class="progress-text"><span id="checklist-count">0</span> / 6 <span data-i18n="completed">पूरे हुए</span></p>
+            
+            <div id="checklist-items" class="checklist-items">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Celebration overlay -->
+            <div id="celebration" class="celebration hidden">
+                <div class="celebration-content">
+                    <span class="celebration-emoji">🎉</span>
+                    <h2 data-i18n="readyToVote">आप वोट देने के लिए तैयार हैं!</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 5: Chat -->
+        <section id="tab-chat" class="tab-content">
+            <h2 class="section-title" data-i18n="chatTitle">चुनाव सहायक</h2>
+            <div class="chat-header-controls" style="text-align: center; margin-bottom: 10px;">
+                <select id="chat-lang-select" class="voice-lang-select" style="margin: 0 auto; display: inline-block;">
+                    <option value="auto">Auto-Detect / Hindi</option>
+                    <option value="en">English</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    <option value="ml">മലയാളം (Malayalam)</option>
+                    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                </select>
+            </div>
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message bot-message">
+                        <span data-i18n="chatWelcome">नमस्ते! मैं आपका चुनाव सहायक हूँ। आप मुझसे चुनाव से जुड़े सवाल पूछ सकते हैं।</span>
+                    </div>
+                </div>
+                <div class="quick-replies" id="quick-replies">
+                    <!-- Injected via JS -->
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" data-i18n-placeholder="chatInputPlaceholder" placeholder="अपना सवाल लिखें...">
+                    <button id="chat-send-btn" class="send-btn">➤</button>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Floating Voice Assistant Button -->
+    <button id="voice-btn" class="voice-btn">
+        <span class="mic-icon">🎙️</span>
+    </button>
+
+    <!-- Voice Feedback Modal -->
+    <div id="voice-modal" class="voice-modal hidden">
+        <div class="voice-modal-content">
+            <div class="pulsing-mic">🎙️</div>
+            
+            <select id="voice-lang-select" class="voice-lang-select">
+                <option value="hi-IN">हिंदी (Hindi)</option>
+                <option value="en-IN">English</option>
+                <option value="mr-IN">मराठी (Marathi)</option>
+                <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+                <option value="bn-IN">বাংলা (Bengali)</option>
+                <option value="ta-IN">தமிழ் (Tamil)</option>
+                <option value="te-IN">తెలుగు (Telugu)</option>
+                <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+                <option value="ml-IN">മലയാളം (Malayalam)</option>
+                <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
+            </select>
+
+            <p id="voice-status" data-i18n="listeningStatus">सुन रहा हूँ...</p>
+            <p id="voice-transcript" class="transcript"></p>
+            <div class="sound-wave hidden" id="sound-wave">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <button id="close-voice-modal" class="close-modal-btn">✖</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label" data-i18n="navHome">होम</span>
+        </button>
+        <button class="nav-item" data-tab="timeline">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label" data-i18n="navTimeline">प्रक्रिया</span>
+        </button>
+        <button class="nav-item" data-tab="guide">
+            <span class="nav-icon">📖</span>
+            <span class="nav-label" data-i18n="navGuide">गाइड</span>
+        </button>
+        <button class="nav-item" data-tab="checklist">
+            <span class="nav-icon">✅</span>
+            <span class="nav-label" data-i18n="navChecklist">चेकलिस्ट</span>
+        </button>
+        <button class="nav-item" data-tab="chat">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label" data-i18n="navChat">चैट</span>
+        </button>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/features.js"></script>
+    <script src="js/speech.js"></script>
+    </body>
+    </html>
