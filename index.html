@@ -1,1770 +1,884 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vote Smart India 🗳️</title>
-    <!-- Google Fonts for modern typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-/* CSS Variables for Theme */
-:root {
-    --color-saffron: #FF9933;
-    --color-white: #FFFFFF;
-    --color-green: #138808;
-    --color-navy: #000080;
-    --color-bg: #F9F9F9;
-    --color-text: #333333;
-    --color-text-light: #666666;
-    
-    --font-main: 'Mukta', 'Outfit', sans-serif;
-    
-    --bottom-nav-height: 80px;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vote Smart India 🗳️</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF9933;
+    --saffron-light: #FFE5B4;
+    --saffron-dark: #E6820A;
+    --green: #138808;
+    --green-light: #D4EDDA;
+    --green-dark: #0A5C05;
+    --navy: #000080;
+    --white: #FFFFFF;
+    --bg: #FFF9F0;
+    --card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-sub: #555577;
+    --border: #E8E0D0;
+    --shadow: 0 4px 20px rgba(255,153,51,0.15);
+  }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    font-family: var(--font-main);
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    -webkit-tap-highlight-color: transparent;
-    padding-bottom: var(--bottom-nav-height);
-    font-size: 18px; /* Large default font */
-}
+  body {
+    font-family: 'Baloo 2', cursive;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
 
-/* Header */
-.app-header {
-    background-color: var(--color-white);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 4px solid var(--color-saffron);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-emoji {
-    font-size: 28px;
-}
-
-.logo h1 {
-    font-size: 24px;
-    color: var(--color-text);
-    font-weight: 800;
-}
-
-.lang-toggle {
-    background-color: var(--color-green);
-    color: var(--color-white);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* Main Content Area */
-.app-main {
-    padding: 20px;
-}
-
-.tab-content {
-    display: none;
-    animation: fadeIn 0.3s ease;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.section-title {
-    font-size: 28px;
-    color: var(--color-saffron);
-    margin-bottom: 20px;
-    font-weight: 800;
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--saffron) 0%, #FF6B00 50%, var(--green) 100%);
+    padding: 20px 16px 16px;
     text-align: center;
-}
-
-/* Home / Countdown */
-.hero-section {
-    text-align: center;
-    padding: 30px 10px;
-    background: linear-gradient(to bottom, #fff5eb, #ffffff);
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 2px solid #ffe0c2;
-}
-
-.hero-title {
-    font-size: 32px;
-    color: var(--color-saffron);
-    margin-bottom: 20px;
-}
-
-.countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.time-box {
-    background-color: var(--color-green);
-    color: var(--color-white);
-    padding: 15px;
-    border-radius: 15px;
-    min-width: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(19, 136, 8, 0.3);
-}
-
-.time-box span {
-    font-size: 32px;
-    font-weight: 800;
-}
-
-.time-box small {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.hero-subtitle {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--color-text);
-}
-
-.quick-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.nav-btn-large {
-    background-color: var(--color-white);
-    border: 2px solid var(--color-saffron);
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 22px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.1s;
-}
-
-.nav-btn-large:active {
-    transform: scale(0.98);
-}
-
-/* Timeline */
-.progress-bar-container {
-    background-color: #e0e0e0;
-    height: 12px;
-    border-radius: 6px;
-    margin-bottom: 25px;
+    position: relative;
     overflow: hidden;
-}
-
-.progress-bar-fill {
-    background-color: var(--color-green);
-    height: 100%;
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-.timeline-step {
-    background-color: var(--color-white);
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-left: 5px solid var(--color-saffron);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.timeline-step.active-step {
-    border-left: 5px solid var(--color-green);
-    background-color: #f0fff0;
-}
-
-.timeline-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.timeline-icon {
-    font-size: 32px;
-}
-
-.timeline-title {
-    font-size: 20px;
+  }
+  .header::before {
+    content: '🇮🇳';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.08;
+    top: -20px;
+    right: -20px;
+  }
+  .header h1 {
+    font-size: 26px;
     font-weight: 800;
-    flex-grow: 1;
-}
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    margin-top: 4px;
+  }
+  .lang-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255,255,255,0.25);
+    border: 1.5px solid rgba(255,255,255,0.6);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Baloo 2', cursive;
+  }
 
-.timeline-desc {
-    font-size: 16px;
-    color: var(--color-text-light);
-    margin-top: 5px;
-    display: block;
-}
-
-.timeline-details {
-    display: none;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-.timeline-step.expanded .timeline-details {
-    display: block;
-    animation: fadeIn 0.3s ease;
-}
-
-/* Guide */
-.guide-step {
-    background-color: var(--color-white);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.guide-header {
+  /* COUNTDOWN */
+  .countdown {
+    background: var(--navy);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .countdown-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .countdown-timer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.guide-title-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.guide-title {
+    justify-content: center;
+    gap: 12px;
+  }
+  .cd-block {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 8px 12px;
+    min-width: 60px;
+  }
+  .cd-num {
     font-size: 22px;
     font-weight: 800;
-    color: var(--color-saffron);
-}
+    color: var(--saffron);
+    line-height: 1;
+  }
+  .cd-lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+  .countdown-motto {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 8px;
+    font-style: italic;
+  }
 
-.read-aloud-btn {
-    background-color: #f0f0f0;
-    border: none;
-    font-size: 24px;
-    width: 44px;
-    height: 44px;
+  /* VOICE BUTTON */
+  .voice-section {
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .voice-label {
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .voice-btn {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    background: linear-gradient(135deg, var(--saffron), var(--saffron-dark));
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.read-aloud-btn.playing {
-    background-color: var(--color-green);
-    color: white;
-    animation: pulseSmall 1s infinite;
-}
-
-.guide-content {
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-/* Checklist */
-.checklist-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.checklist-tab-btn {
-    background-color: var(--color-white);
-    border: 2px solid #ddd;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-text-light);
-    cursor: pointer;
-    transition: all 0.2s;
-    flex: 1;
-}
-
-.checklist-tab-btn.active {
-    background-color: var(--color-saffron);
-    color: white;
-    border-color: var(--color-saffron);
-    box-shadow: 0 4px 10px rgba(255, 153, 51, 0.3);
-}
-
-.progress-text {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.checklist-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background-color: var(--color-white);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    cursor: pointer;
-}
-
-.checklist-checkbox {
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--color-text-light);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: transparent;
-    transition: all 0.2s;
-}
-
-.checklist-item.checked .checklist-checkbox {
-    background-color: var(--color-green);
-    border-color: var(--color-green);
-    color: white;
-}
-
-.checklist-text {
-    font-size: 20px;
-    font-weight: 600;
-    flex-grow: 1;
-}
-
-.checklist-item.checked .checklist-text {
-    text-decoration: line-through;
-    color: var(--color-text-light);
-}
-
-.celebration {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(255,255,255,0.9);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.celebration.hidden {
-    display: none;
-}
-
-.celebration-content {
-    text-align: center;
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.celebration-emoji {
-    font-size: 80px;
-}
-
-.celebration h2 {
     font-size: 32px;
-    color: var(--color-green);
-    margin-top: 20px;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Chat */
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 240px);
-}
-
-.chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.message {
-    max-width: 85%;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 18px;
-    line-height: 1.4;
-}
-
-.bot-message {
-    background-color: #f0f0f0;
-    align-self: flex-start;
-    border-bottom-left-radius: 0;
-}
-
-.user-message {
-    background-color: var(--color-saffron);
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 0;
-}
-
-.quick-replies {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px 0;
-    scrollbar-width: none; /* Firefox */
-}
-
-.quick-replies::-webkit-scrollbar {
-    display: none;
-}
-
-.quick-btn {
-    background-color: var(--color-white);
-    border: 2px solid var(--color-green);
-    color: var(--color-green);
-    padding: 10px 15px;
-    border-radius: 20px;
-    white-space: nowrap;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.chat-input-area {
-    display: flex;
-    gap: 10px;
+    margin: 0 auto;
+    box-shadow: 0 6px 24px rgba(255,153,51,0.4);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .voice-btn:hover { transform: scale(1.05); }
+  .voice-btn.listening {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(231,76,60,0); }
+    100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
+  }
+  .voice-status {
     margin-top: 10px;
-}
+    font-size: 13px;
+    color: var(--text-sub);
+    min-height: 20px;
+  }
+  .voice-answer {
+    margin-top: 12px;
+    background: var(--card);
+    border-left: 4px solid var(--saffron);
+    border-radius: 0 12px 12px 0;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: left;
+    display: none;
+    box-shadow: var(--shadow);
+  }
 
-#chat-input {
-    flex-grow: 1;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 25px;
-    font-size: 18px;
-    outline: none;
-}
-
-#chat-input:focus {
-    border-color: var(--color-saffron);
-}
-
-.send-btn {
-    background-color: var(--color-green);
-    color: white;
-    border: none;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Bottom Nav */
-.bottom-nav {
+  /* BOTTOM NAV */
+  .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: var(--bottom-nav-height);
-    background-color: var(--color-white);
+    background: white;
+    border-top: 1.5px solid var(--border);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
     z-index: 100;
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
-.nav-item {
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    color: var(--color-text-light);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+  .nav-item {
+    flex: 1;
+    padding: 8px 4px;
+    text-align: center;
     cursor: pointer;
-    width: 60px;
-}
+    border: none;
+    background: none;
+    font-family: 'Baloo 2', cursive;
+    transition: all 0.2s;
+  }
+  .nav-item .nav-icon { font-size: 22px; display: block; }
+  .nav-item .nav-lbl { font-size: 10px; color: var(--text-sub); display: block; font-weight: 600; }
+  .nav-item.active .nav-lbl { color: var(--saffron); }
+  .nav-item.active .nav-icon { transform: scale(1.15); }
 
-.nav-item.active {
-    color: var(--color-saffron);
-}
+  /* PANELS */
+  .panel { display: none; padding: 16px; }
+  .panel.active { display: block; }
 
-.nav-icon {
-    font-size: 24px;
-    filter: grayscale(100%);
-    opacity: 0.6;
-}
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-.nav-item.active .nav-icon {
-    filter: none;
-    opacity: 1;
-}
+  /* TIMELINE */
+  .timeline-step {
+    background: var(--card);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--saffron), var(--saffron-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .step-icon { font-size: 22px; }
+  .step-title-text { font-weight: 700; font-size: 14px; flex: 1; }
+  .step-arrow { font-size: 12px; color: var(--text-sub); transition: transform 0.3s; }
+  .timeline-step.open .step-arrow { transform: rotate(180deg); }
+  .step-detail {
+    display: none;
+    padding: 0 14px 14px;
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .timeline-step.open .step-detail { display: block; }
 
-.nav-label {
+  /* CHECKLIST */
+  .checklist-progress {
+    background: var(--border);
+    border-radius: 10px;
+    height: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--saffron), var(--green));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .check-item {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .check-item.checked {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .check-box {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    background: white;
+  }
+  .check-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+  .check-text { font-size: 14px; font-weight: 600; flex: 1; }
+  .check-item.checked .check-text { color: var(--green-dark); text-decoration: line-through; }
+  .celebration {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--saffron-light), var(--green-light));
+    border-radius: 16px;
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+
+  /* GUIDE */
+  .guide-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1.5px solid var(--border);
+  }
+  .guide-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .guide-icon { font-size: 28px; }
+  .guide-title { font-size: 15px; font-weight: 700; }
+  .guide-body { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+  .read-aloud-btn {
+    margin-top: 10px;
+    background: var(--saffron-light);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 14px;
     font-size: 12px;
     font-weight: 600;
-}
-
-/* Floating Voice Button */
-.voice-btn {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: var(--color-saffron);
-    border: 4px solid var(--color-white);
-    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 101;
+    color: var(--saffron-dark);
     cursor: pointer;
-    animation: pulse 2s infinite;
-}
+    font-family: 'Baloo 2', cursive;
+  }
 
-.mic-icon {
-    font-size: 32px;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(255, 153, 51, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0); }
-}
-
-@keyframes pulseSmall {
-    0% { box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(19, 136, 8, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(19, 136, 8, 0); }
-}
-
-/* Voice Modal */
-.voice-modal {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 200;
+  /* CHAT */
+  .chat-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.voice-modal.hidden {
-    display: none;
-}
-
-.voice-modal-content {
-    background-color: var(--color-white);
-    width: 90%;
-    max-width: 400px;
+    flex-direction: column;
+    height: calc(100vh - 240px);
+  }
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+  .msg {
+    max-width: 88%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .msg.bot {
+    background: var(--card);
+    align-self: flex-start;
+    border: 1.5px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+  .msg.user {
+    background: linear-gradient(135deg, var(--saffron), var(--saffron-dark));
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .msg.loading { color: var(--text-sub); font-style: italic; }
+  .quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0;
+  }
+  .chip {
+    background: var(--saffron-light);
+    border: 1.5px solid var(--saffron);
+    color: var(--saffron-dark);
     border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    position: relative;
-}
-
-.pulsing-mic {
-    font-size: 60px;
-    margin: 0 auto 20px;
-    width: 100px;
-    height: 100px;
-    background-color: #ffe0c2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: pulse 1s infinite;
-}
-
-.voice-lang-select {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid var(--color-green);
-    border-radius: 10px;
-    font-size: 16px;
+    padding: 5px 12px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--color-text);
-    background-color: var(--color-bg);
-}
-
-#voice-status {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--color-saffron);
-    margin-bottom: 15px;
-}
-
-.transcript {
-    font-size: 20px;
-    color: var(--color-text);
-    min-height: 60px;
-}
-
-.close-modal-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--color-text-light);
     cursor: pointer;
-}
-
-/* Sound Wave Animation */
-.sound-wave {
+    font-family: 'Baloo 2', cursive;
+  }
+  .chat-input-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    height: 40px;
-    margin-top: 20px;
-}
-
-.sound-wave.hidden {
-    display: none;
-}
-
-.sound-wave span {
-    display: block;
-    width: 8px;
-    height: 100%;
-    background-color: var(--color-green);
-    border-radius: 4px;
-    animation: wave 1s ease-in-out infinite;
-}
-
-.sound-wave span:nth-child(1) { animation-delay: 0.0s; }
-.sound-wave span:nth-child(2) { animation-delay: 0.1s; }
-.sound-wave span:nth-child(3) { animation-delay: 0.2s; }
-.sound-wave span:nth-child(4) { animation-delay: 0.3s; }
-.sound-wave span:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes wave {
-    0%, 100% { height: 20%; }
-    50% { height: 100%; }
-}
-
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1.5px solid var(--border);
+  }
+  .chat-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    font-family: 'Baloo 2', cursive;
+    background: var(--card);
+    color: var(--text);
+  }
+  .chat-send {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--saffron), var(--saffron-dark));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Baloo 2', cursive;
+  }
 </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="app-header">
-        <div class="logo">
-            <span class="logo-emoji">🗳️</span>
-            <h1 id="app-title" data-i18n="appTitle">Vote Smart India</h1>
-        </div>
-        <button id="lang-toggle" class="lang-toggle">English</button>
-    </header>
+<!-- HEADER -->
+<div class="header">
+  <button class="lang-toggle" onclick="toggleLang()" id="langBtn">हिंदी</button>
+  <h1 id="appTitle">🗳️ Vote Smart India</h1>
+  <p id="appSubtitle">Your complete election guide</p>
+</div>
 
-    <!-- Main Content Area -->
-    <main class="app-main">
-        
-        <!-- Tab 1: Home (Countdown) -->
-        <section id="tab-home" class="tab-content active">
-            <div class="hero-section">
-                <h2 data-i18n="homeHeroTitle" class="hero-title">अगला लोकसभा चुनाव 2029</h2>
-                <div class="countdown-container">
-                    <div class="time-box"><span id="cd-days">--</span><small data-i18n="days">दिन</small></div>
-                    <div class="time-box"><span id="cd-hours">--</span><small data-i18n="hours">घंटे</small></div>
-                    <div class="time-box"><span id="cd-mins">--</span><small data-i18n="minutes">मिनट</small></div>
-                    <div class="time-box"><span id="cd-secs">--</span><small data-i18n="seconds">सेकंड</small></div>
-                </div>
-                <p data-i18n="homeHeroSubtitle" class="hero-subtitle">आपका वोट भारत का भविष्य तय करता है!</p>
-            </div>
-            
-            <div class="quick-links">
-                <button class="nav-btn-large" onclick="app.switchTab('guide')">
-                    <span class="icon">📖</span> <span data-i18n="navGuide">वोटर गाइड</span>
-                </button>
-                <button class="nav-btn-large" onclick="app.switchTab('checklist')">
-                    <span class="icon">✅</span> <span data-i18n="navChecklist">चेकलिस्ट</span>
-                </button>
-            </div>
-        </section>
+<!-- COUNTDOWN -->
+<div class="countdown">
+  <div class="countdown-label" id="cdLabel">Next General Election 2029</div>
+  <div class="countdown-timer">
+    <div class="cd-block"><div class="cd-num" id="cdDays">000</div><div class="cd-lbl" id="cdDayLbl">Days</div></div>
+    <div class="cd-block"><div class="cd-num" id="cdHours">00</div><div class="cd-lbl" id="cdHrLbl">Hours</div></div>
+    <div class="cd-block"><div class="cd-num" id="cdMins">00</div><div class="cd-lbl" id="cdMinLbl">Mins</div></div>
+    <div class="cd-block"><div class="cd-num" id="cdSecs">00</div><div class="cd-lbl" id="cdSecLbl">Secs</div></div>
+  </div>
+  <div class="countdown-motto" id="cdMotto">🇮🇳 Your vote shapes India's future!</div>
+</div>
 
-        <!-- Tab 2: Timeline -->
-        <section id="tab-timeline" class="tab-content">
-            <h2 class="section-title" data-i18n="timelineTitle">चुनाव प्रक्रिया</h2>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="timeline-progress"></div>
-            </div>
-            <div id="timeline-list" class="timeline-list">
-                <!-- Injected via JS -->
-            </div>
-        </section>
+<!-- HOME PANEL -->
+<div id="panel-home" class="panel active">
+  <div class="voice-section">
+    <div class="voice-label" id="voiceLabel">🎙️ Tap & ask in any language</div>
+    <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">🎙️</button>
+    <div class="voice-status" id="voiceStatus"></div>
+    <div class="voice-answer" id="voiceAnswer"></div>
+  </div>
 
-        <!-- Tab 3: Guide -->
-        <section id="tab-guide" class="tab-content">
-            <h2 class="section-title" data-i18n="guideTitle">पहली बार वोटरों के लिए गाइड</h2>
-            <div id="guide-list" class="guide-list">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- Tab 4: Checklist -->
-        <section id="tab-checklist" class="tab-content">
-            <h2 class="section-title" data-i18n="checklistTitle">वोटर चेकलिस्ट</h2>
-            
-            <div class="checklist-tabs">
-                <button class="checklist-tab-btn active" data-type="firstTime" data-i18n="firstTimeVoterTab">पहली बार वोटर</button>
-                <button class="checklist-tab-btn" data-type="general" data-i18n="generalVoterTab">सामान्य वोटर</button>
-            </div>
-
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="checklist-progress"></div>
-            </div>
-            <p class="progress-text"><span id="checklist-count">0</span> / 6 <span data-i18n="completed">पूरे हुए</span></p>
-            
-            <div id="checklist-items" class="checklist-items">
-                <!-- Injected via JS -->
-            </div>
-
-            <!-- Celebration overlay -->
-            <div id="celebration" class="celebration hidden">
-                <div class="celebration-content">
-                    <span class="celebration-emoji">🎉</span>
-                    <h2 data-i18n="readyToVote">आप वोट देने के लिए तैयार हैं!</h2>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tab 5: Chat -->
-        <section id="tab-chat" class="tab-content">
-            <h2 class="section-title" data-i18n="chatTitle">चुनाव सहायक</h2>
-            <div class="chat-header-controls" style="text-align: center; margin-bottom: 10px;">
-                <select id="chat-lang-select" class="voice-lang-select" style="margin: 0 auto; display: inline-block;">
-                    <option value="auto">Auto-Detect / Hindi</option>
-                    <option value="en">English</option>
-                    <option value="mr">मराठी (Marathi)</option>
-                    <option value="gu">ગુજરાતી (Gujarati)</option>
-                    <option value="bn">বাংলা (Bengali)</option>
-                    <option value="ta">தமிழ் (Tamil)</option>
-                    <option value="te">తెలుగు (Telugu)</option>
-                    <option value="kn">ಕನ್ನಡ (Kannada)</option>
-                    <option value="ml">മലയാളം (Malayalam)</option>
-                    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                </select>
-            </div>
-            <div class="chat-container">
-                <div id="chat-messages" class="chat-messages">
-                    <div class="message bot-message">
-                        <span data-i18n="chatWelcome">नमस्ते! मैं आपका चुनाव सहायक हूँ। आप मुझसे चुनाव से जुड़े सवाल पूछ सकते हैं।</span>
-                    </div>
-                </div>
-                <div class="quick-replies" id="quick-replies">
-                    <!-- Injected via JS -->
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="chat-input" data-i18n-placeholder="chatInputPlaceholder" placeholder="अपना सवाल लिखें...">
-                    <button id="chat-send-btn" class="send-btn">➤</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Floating Voice Assistant Button -->
-    <button id="voice-btn" class="voice-btn">
-        <span class="mic-icon">🎙️</span>
-    </button>
-
-    <!-- Voice Feedback Modal -->
-    <div id="voice-modal" class="voice-modal hidden">
-        <div class="voice-modal-content">
-            <div class="pulsing-mic">🎙️</div>
-            
-            <select id="voice-lang-select" class="voice-lang-select">
-                <option value="hi-IN">हिंदी (Hindi)</option>
-                <option value="en-IN">English</option>
-                <option value="mr-IN">मराठी (Marathi)</option>
-                <option value="gu-IN">ગુજરાતી (Gujarati)</option>
-                <option value="bn-IN">বাংলা (Bengali)</option>
-                <option value="ta-IN">தமிழ் (Tamil)</option>
-                <option value="te-IN">తెలుగు (Telugu)</option>
-                <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
-                <option value="ml-IN">മലയാളം (Malayalam)</option>
-                <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
-            </select>
-
-            <p id="voice-status" data-i18n="listeningStatus">सुन रहा हूँ...</p>
-            <p id="voice-transcript" class="transcript"></p>
-            <div class="sound-wave hidden" id="sound-wave">
-                <span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <button id="close-voice-modal" class="close-modal-btn">✖</button>
-        </div>
+  <div style="padding: 0 16px;">
+    <div class="section-title">🚀 Quick Questions</div>
+    <div class="quick-chips">
+      <span class="chip" onclick="voiceAsk('How do I register to vote in India?')">How to register?</span>
+      <span class="chip" onclick="voiceAsk('What is EVM machine?')">What is EVM?</span>
+      <span class="chip" onclick="voiceAsk('Am I eligible to vote?')">Am I eligible?</span>
+      <span class="chip" onclick="voiceAsk('How to find my polling booth?')">Find my booth</span>
+      <span class="chip" onclick="voiceAsk('What is VVPAT?')">What is VVPAT?</span>
+      <span class="chip" onclick="voiceAsk('What documents do I need to vote?')">Documents needed</span>
     </div>
+  </div>
+</div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" data-tab="home">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label" data-i18n="navHome">होम</span>
-        </button>
-        <button class="nav-item" data-tab="timeline">
-            <span class="nav-icon">📅</span>
-            <span class="nav-label" data-i18n="navTimeline">प्रक्रिया</span>
-        </button>
-        <button class="nav-item" data-tab="guide">
-            <span class="nav-icon">📖</span>
-            <span class="nav-label" data-i18n="navGuide">गाइड</span>
-        </button>
-        <button class="nav-item" data-tab="checklist">
-            <span class="nav-icon">✅</span>
-            <span class="nav-label" data-i18n="navChecklist">चेकलिस्ट</span>
-        </button>
-        <button class="nav-item" data-tab="chat">
-            <span class="nav-icon">💬</span>
-            <span class="nav-label" data-i18n="navChat">चैट</span>
-        </button>
-    </nav>
+<!-- TIMELINE PANEL -->
+<div id="panel-timeline" class="panel">
+  <div class="section-title" id="tlTitle">📅 Election Timeline</div>
+  <div id="timelineSteps"></div>
+</div>
 
-    <!-- Scripts -->
-    
-    
-    
-    
+<!-- GUIDE PANEL -->
+<div id="panel-guide" class="panel">
+  <div class="section-title" id="guideTitle">📖 First Timer's Guide</div>
+  <div id="guideCards"></div>
+</div>
+
+<!-- CHECKLIST PANEL -->
+<div id="panel-checklist" class="panel">
+  <div class="section-title" id="clTitle">✅ Voter Checklist</div>
+  <div class="progress-text" id="progressText">0 of 6 tasks completed</div>
+  <div class="checklist-progress">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+  <div id="checklistItems"></div>
+  <div class="celebration" id="celebration">🎉 You are ready to vote! जय हिंद! 🇮🇳</div>
+</div>
+
+<!-- CHAT PANEL -->
+<div id="panel-chat" class="panel">
+  <div class="section-title" id="chatTitle">💬 Ask Anything</div>
+  <div class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot" id="chatWelcome">Hi! I'm your election assistant. Ask me anything about India's election process! 🗳️</div>
+      <div class="quick-chips">
+        <span class="chip" onclick="sendChat('How does voting work in India?')">How voting works</span>
+        <span class="chip" onclick="sendChat('What is Model Code of Conduct?')">Model Code of Conduct</span>
+        <span class="chip" onclick="sendChat('How are votes counted?')">Vote counting</span>
+        <span class="chip" onclick="sendChat('What is Lok Sabha?')">What is Lok Sabha?</span>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-item active" onclick="switchPanel('home',this)">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-lbl" id="nav0">Home</span>
+  </button>
+  <button class="nav-item" onclick="switchPanel('timeline',this)">
+    <span class="nav-icon">📅</span>
+    <span class="nav-lbl" id="nav1">Timeline</span>
+  </button>
+  <button class="nav-item" onclick="switchPanel('guide',this)">
+    <span class="nav-icon">📖</span>
+    <span class="nav-lbl" id="nav2">Guide</span>
+  </button>
+  <button class="nav-item" onclick="switchPanel('checklist',this)">
+    <span class="nav-icon">✅</span>
+    <span class="nav-lbl" id="nav3">Checklist</span>
+  </button>
+  <button class="nav-item" onclick="switchPanel('chat',this)">
+    <span class="nav-icon">💬</span>
+    <span class="nav-lbl" id="nav4">Chat</span>
+  </button>
+</div>
+
 <script>
-const translations = {
-    hi: {
-        appTitle: "वोट स्मार्ट इंडिया",
-        homeHeroTitle: "अगला लोकसभा चुनाव 2029",
-        days: "दिन",
-        hours: "घंटे",
-        minutes: "मिनट",
-        seconds: "सेकंड",
-        homeHeroSubtitle: "आपका वोट भारत का भविष्य तय करता है!",
-        navHome: "होम",
-        navTimeline: "प्रक्रिया",
-        navGuide: "गाइड",
-        navChecklist: "चेकलिस्ट",
-        navChat: "चैट",
-        timelineTitle: "चुनाव प्रक्रिया",
-        guideTitle: "पहली बार वोटरों के लिए गाइड",
-        checklistTitle: "वोटर चेकलिस्ट",
-        chatTitle: "चुनाव सहायक",
-        completed: "पूरे हुए",
-        readyToVote: "आप वोट देने के लिए तैयार हैं!",
-        chatWelcome: "नमस्ते! मैं आपका चुनाव सहायक हूँ। आप मुझसे चुनाव से जुड़े सवाल पूछ सकते हैं।",
-        chatInputPlaceholder: "अपना सवाल लिखें...",
-        listeningStatus: "सुन रहा हूँ...",
-        processingStatus: "सोच रहा हूँ...",
-        speakingStatus: "जवाब दे रहा हूँ...",
-        
-        timelineSteps: [
-            { title: "चुनाव की घोषणा", desc: "चुनाव आयोग तारीखों का ऐलान करता है।", detail: "भारत निर्वाचन आयोग (ECI) एक प्रेस कॉन्फ्रेंस में चुनाव की तारीखों, चरणों और आदर्श आचार संहिता लागू होने की घोषणा करता है।" },
-            { title: "नामांकन", desc: "उम्मीदवार अपना पर्चा भरते हैं।", detail: "राजनीतिक दलों के उम्मीदवार और निर्दलीय प्रत्याशी चुनाव लड़ने के लिए रिटर्निंग ऑफिसर के पास अपना नामांकन पत्र जमा करते हैं।" },
-            { title: "नामांकन की जांच", desc: "कागजातों की चेकिंग होती है।", detail: "चुनाव अधिकारी यह जांचते हैं कि उम्मीदवारों द्वारा दी गई जानकारी सही है या नहीं। गलत जानकारी पर नामांकन रद्द हो सकता है।" },
-            { title: "नाम वापसी", desc: "उम्मीदवार अपना नाम वापस ले सकते हैं।", detail: "यदि कोई उम्मीदवार चुनाव नहीं लड़ना चाहता है, तो वह एक निश्चित तारीख तक अपना नाम वापस ले सकता है।" },
-            { title: "चुनाव प्रचार", desc: "पार्टियां जनता से वोट मांगती हैं।", detail: "नेता रैलियां करते हैं, घर-घर जाते हैं और अपने वादे बताते हैं। वोटिंग से 48 घंटे पहले प्रचार बंद हो जाता है।" },
-            { title: "मतदान का दिन", desc: "जनता ईवीएम से अपना वोट डालती है।", detail: "वोटर अपने मतदान केंद्र (पोलिंग बूथ) पर जाते हैं और इलेक्ट्रॉनिक वोटिंग मशीन (EVM) का बटन दबाकर अपना नेता चुनते हैं।" },
-            { title: "वोटों की गिनती", desc: "ईवीएम मशीनें खुलती हैं।", detail: "चुनाव आयोग की निगरानी में वोटों की गिनती होती है और पता चलता है कि किस उम्मीदवार को सबसे ज्यादा वोट मिले।" },
-            { title: "सरकार का गठन", desc: "जीतने वाली पार्टी सरकार बनाती है।", detail: "जिस पार्टी या गठबंधन को बहुमत (आधे से ज्यादा सीटें) मिलता है, वे प्रधानमंत्री चुनते हैं और सरकार बनाते हैं।" }
-        ],
-        
-        guideSteps: [
-            { title: "वोटर लिस्ट में नाम चेक करें", content: "वोट देने के लिए आपका नाम वोटर लिस्ट (Electoral Roll) में होना जरूरी है। आप इसे चुनाव आयोग की वेबसाइट (electoralsearch.eci.gov.in) पर या वोटर हेल्पलाइन ऐप पर चेक कर सकते हैं।" },
-            { title: "वोटर आईडी कार्ड (EPIC) पाएं", content: "अगर आपकी उम्र 18 साल हो गई है, तो फॉर्म 6 भरकर वोटर आईडी कार्ड के लिए अप्लाई करें। आप यह काम ऑनलाइन (nvsp.in) या अपने बीएलओ (BLO) के जरिए कर सकते हैं।" },
-            { title: "पोलिंग बूथ का पता लगाएं", content: "वोटिंग के दिन आपको अपने तय पोलिंग बूथ पर ही जाना होगा। बूथ की पर्ची आपको घर पर मिल जाएगी या आप ऐप से भी देख सकते हैं।" },
-            { title: "ज़रूरी दस्तावेज़ साथ रखें", content: "वोट डालने जाते समय अपना वोटर आईडी कार्ड ज़रूर ले जाएं। अगर वह नहीं है, तो आधार कार्ड, पैन कार्ड या ड्राइविंग लाइसेंस जैसे सरकारी पहचान पत्र भी चलेंगे।" },
-            { title: "EVM का इस्तेमाल कैसे करें", content: "पोलिंग बूथ के अंदर EVM मशीन होगी। अपने पसंदीदा उम्मीदवार के चुनाव चिह्न के सामने वाला नीला बटन दबाएं। बटन दबाते ही लाल बत्ती जलेगी और एक बीप की आवाज़ आएगी।" },
-            { title: "VVPAT मशीन चेक करें", content: "EVM के बगल में VVPAT मशीन होती है। बटन दबाने के बाद इसमें एक पर्ची दिखेगी जिस पर आपके चुने हुए उम्मीदवार का निशान होगा। यह पर्ची 7 सेकंड तक दिखेगी, फिर डिब्बे में गिर जाएगी। यह पक्का करता है कि आपका वोट सही जगह गया है।" }
-        ],
-        
-        firstTimeVoterTab: "पहली बार वोटर",
-        generalVoterTab: "सामान्य वोटर",
-        firstTimeChecklistItems: [
-            "वोटर पोर्टल (nvsp.in) पर रजिस्टर करें",
-            "वोटर आईडी कार्ड (EPIC) के लिए अप्लाई करें",
-            "वोटर लिस्ट में अपना नाम चेक करें",
-            "अपना पोलिंग बूथ खोजें",
-            "वोटिंग की प्रक्रिया को समझें",
-            "वोटिंग की तारीख याद रखें"
-        ],
-        generalChecklistItems: [
-            "वोटर लिस्ट में अपना नाम चेक करें",
-            "अपना पोलिंग बूथ खोजें",
-            "वोटर आईडी कार्ड तैयार रखें",
-            "वोटिंग की तारीख याद रखें",
-            "परिवार वालों को वोट देने के लिए कहें"
-        ],
-        
-        chatReplies: [
-            "वोट कैसे दें?",
-            "मेरा पोलिंग बूथ कहाँ है?",
-            "EVM क्या है?",
-            "VVPAT क्या है?"
-        ]
-    },
-    
-    en: {
-        appTitle: "Vote Smart India",
-        homeHeroTitle: "Next General Election 2029",
-        days: "Days",
-        hours: "Hours",
-        minutes: "Mins",
-        seconds: "Secs",
-        homeHeroSubtitle: "Your vote shapes India's future!",
-        navHome: "Home",
-        navTimeline: "Timeline",
-        navGuide: "Guide",
-        navChecklist: "Checklist",
-        navChat: "Chat",
-        timelineTitle: "Election Process",
-        guideTitle: "First-Time Voter Guide",
-        checklistTitle: "Voter Checklist",
-        chatTitle: "Election Assistant",
-        completed: "Completed",
-        readyToVote: "You are ready to vote!",
-        chatWelcome: "Hello! I am your Election Assistant. You can ask me questions about elections.",
-        chatInputPlaceholder: "Type your question...",
-        listeningStatus: "Listening...",
-        processingStatus: "Thinking...",
-        speakingStatus: "Speaking...",
-        
-        timelineSteps: [
-            { title: "Election Announcement", desc: "ECI announces the dates.", detail: "The Election Commission of India (ECI) announces the polling dates, phases, and enforces the Model Code of Conduct." },
-            { title: "Nomination", desc: "Candidates file their papers.", detail: "Candidates from political parties and independents submit their nomination papers to the Returning Officer to contest the elections." },
-            { title: "Scrutiny", desc: "Checking of documents.", detail: "Election officials verify the details provided by candidates. Incorrect information can lead to rejection of the nomination." },
-            { title: "Withdrawal", desc: "Candidates can withdraw names.", detail: "If a candidate decides not to contest, they can withdraw their name before a specified deadline." },
-            { title: "Campaigning", desc: "Parties ask for votes.", detail: "Leaders hold rallies, do door-to-door campaigning, and explain their manifestos. Campaigning stops 48 hours before voting." },
-            { title: "Polling Day", desc: "Citizens vote using EVMs.", detail: "Voters go to their designated polling booths and cast their votes by pressing a button on the Electronic Voting Machine (EVM)." },
-            { title: "Counting of Votes", desc: "EVMs are opened.", detail: "Votes are counted under the supervision of the Election Commission to find out which candidate received the most votes." },
-            { title: "Government Formation", desc: "Winning party forms govt.", detail: "The party or alliance that secures a majority (more than half the seats) selects the Prime Minister and forms the government." }
-        ],
-        
-        guideSteps: [
-            { title: "Check Name in Voter List", content: "To vote, your name must be on the Electoral Roll. You can check this on the ECI website (electoralsearch.eci.gov.in) or the Voter Helpline app." },
-            { title: "Get Voter ID Card (EPIC)", content: "If you are 18 years old, apply for a Voter ID by filling Form 6. You can do this online (nvsp.in) or through your local BLO." },
-            { title: "Find Your Polling Booth", content: "On voting day, you must go to your designated polling booth. You will receive a voter slip at home, or you can check it on the app." },
-            { title: "Carry Necessary Documents", content: "Take your Voter ID card when you go to vote. If you don't have it, government IDs like Aadhaar, PAN card, or Driving License are also accepted." },
-            { title: "How to use the EVM", content: "Inside the booth, you will find the EVM. Press the blue button next to your chosen candidate's symbol. A red light will glow, and you will hear a loud beep." },
-            { title: "Check the VVPAT Machine", content: "Next to the EVM is the VVPAT machine. After pressing the button, a slip will appear showing your candidate's symbol. It is visible for 7 seconds and then drops into a box. This confirms your vote was recorded correctly." }
-        ],
-        
-        firstTimeVoterTab: "First-Time Voter",
-        generalVoterTab: "General Voter",
-        firstTimeChecklistItems: [
-            "Register on Voter Portal (nvsp.in)",
-            "Apply for Voter ID Card (EPIC)",
-            "Check name on Electoral Roll",
-            "Find polling booth",
-            "Understand the voting process",
-            "Remember polling date"
-        ],
-        generalChecklistItems: [
-            "Check name on Electoral Roll",
-            "Find polling booth",
-            "Keep Voter ID ready",
-            "Remember polling date",
-            "Encourage family to vote"
-        ],
-        
-        chatReplies: [
-            "How to vote?",
-            "Where is my booth?",
-            "What is EVM?",
-            "What is VVPAT?"
-        ]
-    }
+// ─── LANGUAGE ───
+let isHindi = false;
+const T = {
+  en: {
+    appTitle: '🗳️ Vote Smart India', appSubtitle: 'Your complete election guide',
+    cdLabel: 'Next General Election 2029', cdMotto: '🇮🇳 Your vote shapes India\'s future!',
+    cdDayLbl: 'Days', cdHrLbl: 'Hours', cdMinLbl: 'Mins', cdSecLbl: 'Secs',
+    voiceLabel: '🎙️ Tap & ask in any language', voiceStatus: '',
+    tlTitle: '📅 Election Timeline', guideTitle: '📖 First Timer\'s Guide',
+    clTitle: '✅ Voter Checklist', chatTitle: '💬 Ask Anything',
+    chatWelcome: 'Hi! I\'m your election assistant. Ask me anything about India\'s election process! 🗳️',
+    nav0:'Home', nav1:'Timeline', nav2:'Guide', nav3:'Checklist', nav4:'Chat',
+    langBtn: 'हिंदी'
+  },
+  hi: {
+    appTitle: '🗳️ वोट स्मार्ट इंडिया', appSubtitle: 'आपका चुनाव मार्गदर्शक',
+    cdLabel: 'अगला आम चुनाव 2029', cdMotto: '🇮🇳 आपका वोट भारत का भविष्य बनाता है!',
+    cdDayLbl: 'दिन', cdHrLbl: 'घंटे', cdMinLbl: 'मिनट', cdSecLbl: 'सेकंड',
+    voiceLabel: '🎙️ किसी भी भाषा में पूछें', voiceStatus: '',
+    tlTitle: '📅 चुनाव टाइमलाइन', guideTitle: '📖 पहली बार मतदाता गाइड',
+    clTitle: '✅ मतदाता चेकलिस्ट', chatTitle: '💬 कुछ भी पूछें',
+    chatWelcome: 'नमस्ते! मैं आपका चुनाव सहायक हूं। भारत के चुनाव के बारे में कुछ भी पूछें! 🗳️',
+    nav0:'होम', nav1:'टाइमलाइन', nav2:'गाइड', nav3:'चेकलिस्ट', nav4:'चैट',
+    langBtn: 'English'
+  }
 };
 
-window.translations = translations;
+function toggleLang() {
+  isHindi = !isHindi;
+  const lang = isHindi ? 'hi' : 'en';
+  Object.keys(T[lang]).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = T[lang][id];
+  });
+  renderTimeline();
+  renderGuide();
+  renderChecklist();
+}
 
-const app = {
-    currentLang: 'hi', // default
+// ─── COUNTDOWN ───
+function updateCountdown() {
+  const target = new Date('2029-05-01T00:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) return;
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cdDays').textContent = String(days).padStart(3,'0');
+  document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cdMins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cdSecs').textContent = String(secs).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-    init() {
-        this.cacheDOM();
-        this.bindEvents();
-        this.setLanguage(this.currentLang);
-    },
+// ─── NAV ───
+function switchPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
 
-    cacheDOM() {
-        this.langToggleBtn = document.getElementById('lang-toggle');
-        this.navItems = document.querySelectorAll('.nav-item');
-        this.tabContents = document.querySelectorAll('.tab-content');
-    },
-
-    bindEvents() {
-        this.langToggleBtn.addEventListener('click', () => {
-            this.currentLang = this.currentLang === 'hi' ? 'en' : 'hi';
-            this.setLanguage(this.currentLang);
-        });
-
-        this.navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                const tabId = e.currentTarget.getAttribute('data-tab');
-                this.switchTab(tabId);
-            });
-        });
-    },
-
-    setLanguage(lang) {
-        this.currentLang = lang;
-        this.langToggleBtn.textContent = lang === 'hi' ? 'English' : 'हिंदी';
-        document.documentElement.lang = lang;
-        
-        const dict = window.translations[lang];
-
-        // Update static text elements
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (dict[key]) {
-                el.textContent = dict[key];
-            }
-        });
-
-        // Update placeholders
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (dict[key]) {
-                el.placeholder = dict[key];
-            }
-        });
-
-        // Trigger feature re-renders
-        if (window.features) {
-            window.features.renderTimeline();
-            window.features.renderGuide();
-            window.features.renderChecklist();
-            window.features.renderQuickReplies();
-        }
-    },
-
-    switchTab(tabId) {
-        // Update nav active state
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        const activeNav = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
-        if(activeNav) activeNav.classList.add('active');
-
-        // Update content active state
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.getElementById(`tab-${tabId}`).classList.add('active');
-        
-        window.scrollTo(0, 0);
-    }
+// ─── TIMELINE DATA ───
+const timelineData = {
+  en: [
+    { icon:'📢', title:'ECI Announces Schedule', detail:'The Election Commission of India announces polling dates. The Model Code of Conduct immediately comes into force, restricting parties from making new announcements or promises.' },
+    { icon:'📋', title:'Voter List Finalisation', detail:'Electoral rolls are updated and published. Citizens can check their name, correct details, or register as new voters at voterportal.eci.gov.in or the Voter Helpline App.' },
+    { icon:'📝', title:'Filing of Nominations', detail:'Candidates submit nomination papers to the Returning Officer of their constituency. They pay a security deposit (₹25,000 for Lok Sabha) and must declare their assets and criminal records.' },
+    { icon:'🔍', title:'Scrutiny & Withdrawal', detail:'Nomination papers are checked for validity. Candidates can withdraw within a deadline. After withdrawal, the final candidate list is published and election symbols are allotted.' },
+    { icon:'📣', title:'Election Campaigning', detail:'Parties and candidates campaign through rallies, media, and door-to-door visits. All campaigning must stop 48 hours before polling day. Spending limits apply — ₹95 lakh per Lok Sabha candidate.' },
+    { icon:'🗳️', title:'Polling Day', detail:'Booths open 7am–6pm. Voters show their Voter ID or any of 12 approved alternate IDs. They vote using Electronic Voting Machines (EVM). A VVPAT slip is shown for 7 seconds to confirm the vote.' },
+    { icon:'🔢', title:'Vote Counting', detail:'EVMs are opened under strict supervision. Votes are counted round by round. The candidate with the most votes (First Past The Post system) wins the seat.' },
+    { icon:'🏛️', title:'Government Formation', detail:'The party or coalition with 272+ Lok Sabha seats is invited by the President to form the government. The Prime Minister and Council of Ministers are sworn in.' }
+  ],
+  hi: [
+    { icon:'📢', title:'चुनाव आयोग अनुसूची घोषित करता है', detail:'चुनाव आयोग मतदान की तारीखें घोषित करता है। आदर्श आचार संहिता तुरंत लागू हो जाती है।' },
+    { icon:'📋', title:'मतदाता सूची अंतिम करना', detail:'मतदाता सूची अपडेट की जाती है। नागरिक voterportal.eci.gov.in पर अपना नाम जांच सकते हैं या नए मतदाता के रूप में पंजीकरण कर सकते हैं।' },
+    { icon:'📝', title:'नामांकन दाखिल करना', detail:'उम्मीदवार रिटर्निंग ऑफिसर को नामांकन पत्र जमा करते हैं। लोकसभा के लिए ₹25,000 जमानत राशि आवश्यक है।' },
+    { icon:'🔍', title:'जांच और वापसी', detail:'नामांकन पत्रों की जांच की जाती है। उम्मीदवार निर्धारित समय सीमा के भीतर नाम वापस ले सकते हैं।' },
+    { icon:'📣', title:'चुनाव प्रचार', detail:'पार्टियां रैलियों, मीडिया और दरवाजे-दरवाजे जाकर प्रचार करती हैं। मतदान से 48 घंटे पहले प्रचार बंद होना चाहिए।' },
+    { icon:'🗳️', title:'मतदान दिवस', detail:'बूथ सुबह 7 बजे से शाम 6 बजे तक खुले रहते हैं। मतदाता EVM मशीन से वोट देते हैं और VVPAT पर्ची से पुष्टि होती है।' },
+    { icon:'🔢', title:'मतगणना', detail:'EVM सख्त निगरानी में खोली जाती हैं। सबसे अधिक वोट पाने वाला उम्मीदवार जीतता है।' },
+    { icon:'🏛️', title:'सरकार गठन', detail:'272+ सीटें जीतने वाली पार्टी या गठबंधन को राष्ट्रपति सरकार बनाने के लिए आमंत्रित करते हैं।' }
+  ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    app.init();
-});
+function renderTimeline() {
+  const lang = isHindi ? 'hi' : 'en';
+  const data = timelineData[lang];
+  const container = document.getElementById('timelineSteps');
+  container.innerHTML = data.map((s, i) => `
+    <div class="timeline-step" onclick="this.classList.toggle('open')">
+      <div class="step-header">
+        <div class="step-num">${i+1}</div>
+        <span class="step-icon">${s.icon}</span>
+        <span class="step-title-text">${s.title}</span>
+        <span class="step-arrow">▼</span>
+      </div>
+      <div class="step-detail">${s.detail}</div>
+    </div>
+  `).join('');
+}
+renderTimeline();
 
-window.app = app;
-
-const features = {
-    init() {
-        this.initCountdown();
-        this.renderTimeline();
-        this.renderGuide();
-        this.renderChecklist();
-        this.renderQuickReplies();
-        this.initChat();
-    },
-
-    // --- Countdown Timer ---
-    initCountdown() {
-        // Target Date: Approx May 1, 2029
-        const targetDate = new Date("May 1, 2029 00:00:00").getTime();
-
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) return;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("cd-days").textContent = days.toString().padStart(2, '0');
-            document.getElementById("cd-hours").textContent = hours.toString().padStart(2, '0');
-            document.getElementById("cd-mins").textContent = minutes.toString().padStart(2, '0');
-            document.getElementById("cd-secs").textContent = seconds.toString().padStart(2, '0');
-        };
-
-        updateTimer();
-        setInterval(updateTimer, 1000);
-    },
-
-    // --- Timeline ---
-    renderTimeline() {
-        const list = document.getElementById('timeline-list');
-        list.innerHTML = '';
-        const steps = window.translations[window.app.currentLang].timelineSteps;
-        
-        // Mocking the current phase (e.g. phase 1)
-        const currentPhaseIndex = 0; 
-
-        steps.forEach((step, index) => {
-            const stepEl = document.createElement('div');
-            stepEl.className = `timeline-step ${index === currentPhaseIndex ? 'active-step' : ''}`;
-            
-            stepEl.innerHTML = `
-                <div class="timeline-header">
-                    <div class="timeline-icon">${index + 1}️⃣</div>
-                    <div class="timeline-title">
-                        ${step.title}
-                        <span class="timeline-desc">${step.desc}</span>
-                    </div>
-                </div>
-                <div class="timeline-details">${step.detail}</div>
-            `;
-
-            stepEl.addEventListener('click', () => {
-                stepEl.classList.toggle('expanded');
-            });
-
-            list.appendChild(stepEl);
-        });
-
-        const progress = ((currentPhaseIndex + 1) / steps.length) * 100;
-        document.getElementById('timeline-progress').style.width = `${progress}%`;
-    },
-
-    // --- Guide ---
-    renderGuide() {
-        const list = document.getElementById('guide-list');
-        list.innerHTML = '';
-        const steps = window.translations[window.app.currentLang].guideSteps;
-
-        steps.forEach((step, index) => {
-            const stepEl = document.createElement('div');
-            stepEl.className = 'guide-step';
-            
-            stepEl.innerHTML = `
-                <div class="guide-header">
-                    <div class="guide-title-container">
-                        <span class="guide-number">🔹</span>
-                        <div class="guide-title">${step.title}</div>
-                    </div>
-                    <button class="read-aloud-btn" onclick="window.speechAPI.speak('${step.content.replace(/'/g, "\\'")}', this)">🔊</button>
-                </div>
-                <div class="guide-content">${step.content}</div>
-            `;
-            list.appendChild(stepEl);
-        });
-    },
-
-    currentChecklistType: 'firstTime',
-
-    // --- Checklist ---
-    renderChecklist() {
-        if (!this.tabsBound) {
-            document.querySelectorAll('.checklist-tab-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.checklist-tab-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    this.currentChecklistType = e.target.getAttribute('data-type');
-                    this.renderChecklistItems();
-                });
-            });
-            this.tabsBound = true;
-        }
-        this.renderChecklistItems();
-    },
-
-    renderChecklistItems() {
-        const list = document.getElementById('checklist-items');
-        list.innerHTML = '';
-        const isFirstTime = this.currentChecklistType === 'firstTime';
-        const items = isFirstTime 
-            ? window.translations[window.app.currentLang].firstTimeChecklistItems 
-            : window.translations[window.app.currentLang].generalChecklistItems;
-        
-        const storageKey = 'voteSmartChecklist_' + this.currentChecklistType;
-        let state = JSON.parse(localStorage.getItem(storageKey)) || [];
-        
-        items.forEach((itemText, index) => {
-            const isChecked = state.includes(index);
-            
-            const itemEl = document.createElement('div');
-            itemEl.className = `checklist-item ${isChecked ? 'checked' : ''}`;
-            itemEl.setAttribute('data-index', index);
-            
-            itemEl.innerHTML = `
-                <div class="checklist-checkbox">✓</div>
-                <div class="checklist-text">${itemText}</div>
-            `;
-            
-            itemEl.addEventListener('click', () => {
-                itemEl.classList.toggle('checked');
-                this.updateChecklistProgress(storageKey);
-            });
-            
-            list.appendChild(itemEl);
-        });
-        
-        this.updateChecklistProgress(storageKey, false); // don't animate celebration on initial load
-    },
-
-    updateChecklistProgress(storageKey, allowCelebration = true) {
-        const items = document.querySelectorAll('.checklist-item');
-        const total = items.length;
-        let checked = 0;
-        let state = [];
-        
-        items.forEach((item, index) => {
-            if (item.classList.contains('checked')) {
-                checked++;
-                state.push(index);
-            }
-        });
-        
-        localStorage.setItem(storageKey, JSON.stringify(state));
-        
-        document.getElementById('checklist-count').textContent = checked;
-        document.querySelector('.progress-text').innerHTML = `<span id="checklist-count">${checked}</span> / ${total} <span data-i18n="completed">${window.translations[window.app.currentLang].completed || "Completed"}</span>`;
-        
-        const progress = total > 0 ? (checked / total) * 100 : 0;
-        document.getElementById('checklist-progress').style.width = `${progress}%`;
-        
-        if (checked === total && total > 0 && allowCelebration) {
-            const celebration = document.getElementById('celebration');
-            celebration.classList.remove('hidden');
-            setTimeout(() => {
-                celebration.classList.add('hidden');
-            }, 3000);
-        }
-    },
-
-    // --- Chat ---
-    renderQuickReplies() {
-        const container = document.getElementById('quick-replies');
-        container.innerHTML = '';
-        const replies = window.translations[window.app.currentLang].chatReplies;
-        
-        replies.forEach(text => {
-            const btn = document.createElement('button');
-            btn.className = 'quick-btn';
-            btn.textContent = text;
-            btn.addEventListener('click', () => {
-                this.handleUserChatInput(text);
-            });
-            container.appendChild(btn);
-        });
-    },
-
-    initChat() {
-        const sendBtn = document.getElementById('chat-send-btn');
-        const input = document.getElementById('chat-input');
-        
-        sendBtn.addEventListener('click', () => {
-            if (input.value.trim() !== '') {
-                this.handleUserChatInput(input.value.trim());
-                input.value = '';
-            }
-        });
-        
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && input.value.trim() !== '') {
-                this.handleUserChatInput(input.value.trim());
-                input.value = '';
-            }
-        });
-    },
-
-    handleUserChatInput(text) {
-        // Add user message
-        const chatMessages = document.getElementById('chat-messages');
-        const userMsg = document.createElement('div');
-        userMsg.className = 'message user-message';
-        userMsg.textContent = text;
-        chatMessages.appendChild(userMsg);
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        
-        // Process bot reply
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.className = 'message bot-message';
-            botMsg.textContent = this.getMockBotReply(text);
-            chatMessages.appendChild(botMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 80    getMockBotReply(text) {
-        const lower = text.toLowerCase();
-        let lang = window.app.currentLang; // default 'hi' or 'en'
-        
-        // --- Explicit Language Selection ---
-        const chatLangSelect = document.getElementById('chat-lang-select');
-        if (chatLangSelect && chatLangSelect.value !== 'auto') {
-            lang = chatLangSelect.value;
-        } else {
-            // --- Language Detection Fallback ---
-            if (/[\u0A80-\u0AFF]/.test(text)) lang = 'gu';
-            else if (/[\u0980-\u09FF]/.test(text)) lang = 'bn';
-            else if (/[\u0B80-\u0BFF]/.test(text)) lang = 'ta';
-            else if (/[\u0C00-\u0C7F]/.test(text)) lang = 'te';
-            else if (/[\u0C80-\u0CFF]/.test(text)) lang = 'kn';
-            else if (/[\u0D00-\u0D7F]/.test(text)) lang = 'ml';
-            else if (/[\u0A00-\u0A7F]/.test(text)) lang = 'pa';
-            else if (/(कुठे|कसे|वय|पात्रता|मतदान|किती|कोण|काय|मध्ये|ओळखपत्र|नोंदणी|वेळ)/.test(text)) lang = 'mr';
-            else if (/(ક્યાં|કેવી|ઉંમર|લાયકાત|કોણ|દસ્તાવેજ|નોંધણી|સમય)/.test(text)) lang = 'gu';
-            else if (/(কোথায়|কিভাবে|বয়স|যোগ্যতা|কে|প্রমাণ|নিবন্ধন|সময়)/.test(text)) lang = 'bn';
-            else if (/(எங்கே|எப்படி|வயது|தகுதி|யார்|ஆவணம்|பதிவு|நேரம்)/.test(text)) lang = 'ta';
-            else if (/(ఎక్కడ|ఎలా|వయస్సు|అర్హత|ఎవరు|పత్రాలు|నమోదు|సమయం)/.test(text)) lang = 'te';
-            else if (/(ಎಲ್ಲಿ|ಹೇಗೆ|ವಯಸ್ಸು|ಅರ್ಹತೆ|ಯಾರು|ದಾಖಲೆ|ನೋಂದಣಿ|ಸಮಯ)/.test(text)) lang = 'kn';
-            else if (/(എവിടെ|എങ്ങനെ|പ്രായം|യോഗ്യത|ആര്|രേഖകൾ|ഫോം|സമയം)/.test(text)) lang = 'ml';
-            else if (/(ਕਿੱਥੇ|ਕਿਵੇਂ|ਉਮਰ|ਯੋਗਤਾ|ਕੌਣ|ਦਸਤਾਵੇਜ਼|ਰਜਿਸਟਰ|ਸਮਾਂ)/.test(text)) lang = 'pa';
-            
-            // Voice dropdown detection fallback
-            const voiceLang = document.getElementById('voice-lang-select')?.value;
-            if (voiceLang && voiceLang !== 'hi-IN' && voiceLang !== 'en-IN' && text.trim() !== '') {
-                if (voiceLang.startsWith('mr')) lang = 'mr';
-                if (voiceLang.startsWith('gu')) lang = 'gu';
-                if (voiceLang.startsWith('bn')) lang = 'bn';
-                if (voiceLang.startsWith('ta')) lang = 'ta';
-                if (voiceLang.startsWith('te')) lang = 'te';
-                if (voiceLang.startsWith('kn')) lang = 'kn';
-                if (voiceLang.startsWith('ml')) lang = 'ml';
-                if (voiceLang.startsWith('pa')) lang = 'pa';
-            }
-        }
-
-        // --- Responses ---
-        if (lang === 'mr') {
-            if (lower.includes('कुठे') || lower.includes('केंद्र') || lower.includes('बूथ')) return "तुम्ही तुमचे मतदान केंद्र निवडणूक आयोगाच्या वेबसाइट electoralsearch.eci.gov.in वर तपासू शकता.";
-            if (lower.includes('कसे') || lower.includes('मतदान')) return "मतदान करण्यासाठी, मतदान केंद्रावर जा, ओळखपत्र दाखवा आणि EVM वरील उमेदवारासमोरील निळे बटण दाबा.";
-            if (lower.includes('evm')) return "EVM म्हणजे इलेक्ट्रॉनिक व्होटिंग मशीन.";
-            if (lower.includes('vvpat')) return "VVPAT एक मशीन आहे जी EVM ला जोडलेली असते.";
-            if (lower.includes('वय') || lower.includes('18')) return "मतदान करण्यासाठी तुमचे वय १८ वर्षे किंवा त्याहून अधिक असणे आवश्यक आहे.";
-            if (lower.includes('पात्रता') || lower.includes('कोण')) return "१८ वर्षांवरील कोणताही भारतीय नागरिक ज्याचे नाव मतदार यादीत आहे तो मतदान करण्यास पात्र आहे.";
-            if (lower.includes('nri') || lower.includes('अनिवासी') || lower.includes('परदेश')) return "होय, अनिवासी भारतीय (NRI) मतदान करू शकतात, परंतु त्यांना त्यांच्या मतदान केंद्रावर उपस्थित राहणे आवश्यक आहे.";
-            if (lower.includes('nota') || lower.includes('नोटा')) return "NOTA म्हणजे 'यापैकी कोणीही नाही'. जर तुम्हाला कोणताही उमेदवार योग्य वाटत नसेल तर तुम्ही NOTA चा पर्याय निवडू शकता.";
-            if (lower.includes('ओळखपत्र') || lower.includes('कागदपत्रे') || lower.includes('id') || lower.includes('आयडी')) return "मतदान करण्यासाठी मतदार ओळखपत्र (EPIC) आवश्यक आहे. ते नसल्यास तुम्ही आधार किंवा पॅन कार्ड वापरू शकता.";
-            if (lower.includes('नोंदणी') || lower.includes('रजिस्टर') || lower.includes('फॉर्म')) return "मतदार म्हणून नोंदणी करण्यासाठी voters.eci.gov.in वर फॉर्म 6 भरा किंवा वोटर हेल्पलाइन ॲप वापरा.";
-            if (lower.includes('वेळ') || lower.includes('किती वाजता')) return "मतदानाची वेळ साधारणपणे सकाळी ७:०० ते सायंकाळी ६:०० पर्यंत असते.";
-            return "क्षमस्व, मी सध्या फक्त निवडणुकांशी संबंधित सामान्य प्रश्नांची उत्तरे देऊ शकतो.";
-        }
-        else if (lang === 'gu') {
-            if (lower.includes('ક્યાં') || lower.includes('બૂથ')) return "તમે ચૂંટણી પંચની વેબસાઇટ electoralsearch.eci.gov.in પર તમારું मतदान મથક ચકાસી શકો છો.";
-            if (lower.includes('કેવી') || lower.includes('વોટ') || lower.includes('મત')) return "મતદાન કરવા માટે, બૂથ પર જાઓ, તમારું ID બતાવો અને EVM પર તમારા ઉમેદવારની બાજુમાં આવેલ વાદળી બટન દબાવો.";
-            if (lower.includes('evm')) return "EVM એટલે ઇલેક્ટ્રોનિક વોટિંગ મશીન.";
-            if (lower.includes('vvpat')) return "VVPAT એ EVM સાથે જોડાયેલ મશીન છે.";
-            if (lower.includes('ઉંમર') || lower.includes('18')) return "મતદાન કરવા માટે તમારી ઉંમર ૧૮ વર્ષ કે તેથી વધુ હોવી જોઈએ.";
-            if (lower.includes('લાયકાત') || lower.includes('કોણ')) return "૧૮ વર્ષથી ઉપરનો કોઈપણ ભારતીય નાગરિક જેનું નામ મતદાર યાદીમાં હોય તે મતદાન કરવા પાત્ર છે.";
-            if (lower.includes('nri') || lower.includes('વિદેશ')) return "હા, બિન-નિવાસી ભારતીયો (NRI) મતદાન કરી શકે છે, પરંતુ તેઓએ તેમના મતદાન મથક પર હાજર રહેવું આવશ્યક છે.";
-            if (lower.includes('nota') || lower.includes('નોટા')) return "NOTA એટલે 'આમાંથી કોઈ નહીં'. તમે તમામ ઉમેદવારોને નકારી કાઢવા માટે NOTA નો ઉપયોગ કરી શકો છો.";
-            if (lower.includes('દસ્તાવેજ') || lower.includes('id') || lower.includes('આઈડી') || lower.includes('પુરાવા')) return "મતદાન કરવા માટે મતદાર આઈડી (EPIC) જરૂરી છે. તેના બદલે તમે આધાર કે પાન કાર્ડ પણ બતાવી શકો છો.";
-            if (lower.includes('નોંધણી') || lower.includes('રજીસ્ટર') || lower.includes('ફોર્મ')) return "મતદાર તરીકે નોંધણી કરવા માટે voters.eci.gov.in પર ઓનલાઇન ફોર્મ 6 ભરો.";
-            if (lower.includes('સમય') || lower.includes('ક્યારે')) return "મતદાનનો સમય સામાન્ય રીતે સવારે 7:00 થી સાંજે 6:00 વાગ્યા સુધીનો હોય છે.";
-            return "માફ કરશો, હું અત્યારે માત્ર ચૂંટણી સંબંધિત સામાન્ય પ્રશ્નોના જ જવાબ આપી શકું છું.";
-        }
-        else if (lang === 'bn') {
-            if (lower.includes('কোথায়') || lower.includes('বুথ')) return "আপনি নির্বাচন কমিশনের ওয়েবসাইট electoralsearch.eci.gov.in এ আপনার পোলিং বুথ চেক করতে পারেন।";
-            if (lower.includes('কিভাবে') || lower.includes('ভোট')) return "ভোট দেওয়ার জন্য, বুথে যান, আইডি দেখান এবং EVM এ আপনার প্রার্থীর পাশের নীল বোতামটি টিপুন।";
-            if (lower.includes('evm')) return "EVM মানে ইলেকট্রনিক ভোটিং মেশিন।";
-            if (lower.includes('vvpat')) return "VVPAT হলো EVM এর সাথে যুক্ত একটি মেশিন।";
-            if (lower.includes('বয়স') || lower.includes('18')) return "ভোট দেওয়ার জন্য আপনার বয়স ১৮ বছর বা তার বেশি হতে হবে।";
-            if (lower.includes('যোগ্যতা') || lower.includes('কে')) return "১৮ বছরের বেশি বয়সী যেকোনো ভারতীয় নাগরিক যার নাম ভোটার তালিকায় আছে তিনি ভোট দিতে যোগ্য।";
-            if (lower.includes('nri') || lower.includes('বিদেশ')) return "হ্যাঁ, অনাবাসী ভারতীয়রা (NRI) ভোট দিতে পারেন, তবে তাদের বুথে উপস্থিত থাকতে হবে।";
-            if (lower.includes('nota') || lower.includes('নোটা')) return "NOTA মানে 'এদের কেউই নয়'। আপনি সব প্রার্থীকে প্রত্যাখ্যান করতে চাইলে NOTA বেছে নিতে পারেন।";
-            if (lower.includes('আইডি') || lower.includes('id') || lower.includes('প্রমাণ') || lower.includes('ডকুমেন্ট')) return "ভোট দিতে ভোটার আইডি (EPIC) প্রয়োজন। না থাকলে আধার বা প্যান কার্ড ব্যবহার করতে পারেন।";
-            if (lower.includes('নিবন্ধন') || lower.includes('ফর্ম') || lower.includes('রেজিস্টার')) return "ভোটার হিসেবে নিবন্ধন করতে voters.eci.gov.in এ ফর্ম ৬ পূরণ করুন।";
-            if (lower.includes('সময়') || lower.includes('কখন')) return "ভোটদানের সময় সাধারণত সকাল ৭:০০ থেকে সন্ধ্যা ৬:০০ পর্যন্ত হয়।";
-            return "দুঃখিত, আমি এখন কেবল নির্বাচন সম্পর্কিত সাধারণ প্রশ্নের উত্তর দিতে পারি।";
-        }
-        else if (lang === 'ta') {
-            if (lower.includes('எங்கே') || lower.includes('சாவடி')) return "நீங்கள் உங்கள் வாக்குச்சாவடியை electoralsearch.eci.gov.in இல் சரிபார்க்கலாம்.";
-            if (lower.includes('எப்படி') || lower.includes('வாக்கு')) return "வாக்களிக்க, சாவடிக்குச் சென்று, ஐடியைக் காட்டி, EVM-ல் நீல நிற பொத்தானை அழுத்தவும்.";
-            if (lower.includes('evm')) return "EVM என்பது மின்னணு வாக்குப்பதிவு இயந்திரம்.";
-            if (lower.includes('vvpat')) return "VVPAT என்பது EVM-உடன் இணைக்கப்பட்ட இயந்திரம்.";
-            if (lower.includes('வயது') || lower.includes('18')) return "வாக்களிக்க உங்களுக்கு 18 வயது அல்லது அதற்கு மேல் இருக்க வேண்டும்.";
-            if (lower.includes('தகுதி') || lower.includes('யார்')) return "வாக்காளர் பட்டியலில் பெயர் உள்ள 18 வயதுக்கு மேற்பட்ட இந்தியக் குடிமக்கள் வாக்களிக்கத் தகுதியானவர்கள்.";
-            if (lower.includes('nri') || lower.includes('வெளிநாடு')) return "ஆம், வெளிநாடு வாழ் இந்தியர்களும் (NRI) வாக்களிக்கலாம், ஆனால் அவர்கள் நேரில் வர வேண்டும்.";
-            if (lower.includes('nota') || lower.includes('நோட்டா')) return "NOTA என்பது 'இவர்களில் எவரும் இல்லை' என்பதாகும். வேட்பாளர்கள் யாரையும் பிடிக்கவில்லை என்றால் இதைத் தேர்ந்தெடுக்கலாம்.";
-            if (lower.includes('ஐடி') || lower.includes('id') || lower.includes('ஆவணம்') || lower.includes('சான்று')) return "வாக்களிக்க வாக்காளர் அடையாள அட்டை (EPIC) தேவை. இல்லையெனில் ஆதார் அல்லது பான் கார்டைப் பயன்படுத்தலாம்.";
-            if (lower.includes('பதிவு') || lower.includes('படிவம்') || lower.includes('ரிஜிஸ்டர்')) return "வாக்காளராக பதிவு செய்ய voters.eci.gov.in இல் படிவம் 6-ஐ நிரப்பவும்.";
-            if (lower.includes('நேரம்') || lower.includes('எப்போது')) return "வாக்குப்பதிவு பொதுவாக காலை 7:00 மணி முதல் மாலை 6:00 மணி வரை நடைபெறும்.";
-            return "மன்னிக்கவும், தேர்தல் தொடர்பான பொதுவான கேள்விகளுக்கு மட்டுமே என்னால் பதிலளிக்க முடியும்.";
-        }
-        else if (lang === 'te') {
-            if (lower.includes('ఎక్కడ') || lower.includes('బూత్')) return "మీరు మీ పోలింగ్ బూత్‌ను electoralsearch.eci.gov.in లో చెక్ చేసుకోవచ్చు.";
-            if (lower.includes('ఎలా') || lower.includes('ఓటు')) return "ఓటు వేయడానికి, బూత్‌కు వెళ్లి, ID చూపించి, EVMలో నీలం బటన్‌ను నొక్కండి.";
-            if (lower.includes('evm')) return "EVM అంటే ఎలక్ట్రానిక్ ఓటింగ్ యంత్రం.";
-            if (lower.includes('vvpat')) return "VVPAT అనేది EVMకు అనుసంధానించబడిన యంత్రం.";
-            if (lower.includes('వయస్సు') || lower.includes('18')) return "ఓటు వేయడానికి మీకు 18 సంవత్సరాలు లేదా అంతకంటే ఎక్కువ వయస్సు ఉండాలి.";
-            if (lower.includes('అర్హత') || lower.includes('ఎవరు')) return "ఓటరు జాబితాలో పేరున్న 18 ఏళ్లు పైబడిన భారతీయ పౌరులు ఓటు వేయడానికి అర్హులు.";
-            if (lower.includes('nri') || lower.includes('విదేశీ')) return "అవును, ప్రవాస భారతీయులు (NRI) కూడా ఓటు వేయవచ్చు, కానీ వారు నేరుగా రావాలి.";
-            if (lower.includes('nota') || lower.includes('నోటా')) return "NOTA అంటే 'పై వారెవరూ కాదు'. ఏ అభ్యర్థి నచ్చకపోతే దీనిని ఎంచుకోవచ్చు.";
-            if (lower.includes('ఐడీ') || lower.includes('id') || lower.includes('పత్రాలు') || lower.includes('కార్డు')) return "ఓటు వేయడానికి ఓటరు ID (EPIC) అవసరం. లేదంటే ఆధార్ లేదా పాన్ కార్డ్ వాడవచ్చు.";
-            if (lower.includes('నమోదు') || lower.includes('ఫారం') || lower.includes('రిజిస్టర్')) return "ఓటరుగా నమోదు చేసుకోవడానికి voters.eci.gov.in లో ఫారం 6 నింపండి.";
-            if (lower.includes('సమయం') || lower.includes('ఎప్పుడు')) return "పోలింగ్ సాధారణంగా ఉదయం 7:00 నుండి సాయంత్రం 6:00 వరకు జరుగుతుంది.";
-            return "క్షమించండి, నేను కేవలం ఎన్నికలకు సంబంధించిన ప్రశ్నలకు మాత్రమే సమాధానం ఇవ్వగలను.";
-        }
-        else if (lang === 'kn') {
-            if (lower.includes('ಎಲ್ಲಿ') || lower.includes('ಬೂತ್')) return "ನೀವು electoralsearch.eci.gov.in ನಲ್ಲಿ ನಿಮ್ಮ ಮತಗಟ್ಟೆಯನ್ನು ಪರಿಶೀಲಿಸಬಹುದು.";
-            if (lower.includes('ಹೇಗೆ') || lower.includes('ಮತ')) return "ಮತದಾನ ಮಾಡಲು, ಬೂತ್‌ಗೆ ಹೋಗಿ, ID ತೋರಿಸಿ ಮತ್ತು EVM ನಲ್ಲಿ ನೀಲಿ ಬಟನ್ ಒತ್ತಿರಿ.";
-            if (lower.includes('evm')) return "EVM ಅಂದರೆ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ವೋಟಿಂಗ್ ಯಂತ್ರ.";
-            if (lower.includes('vvpat')) return "VVPAT ಎಂಬುದು EVM ಗೆ ಜೋಡಿಸಲಾದ ಯಂತ್ರ.";
-            if (lower.includes('ವಯಸ್ಸು') || lower.includes('18')) return "ಮತದಾನ ಮಾಡಲು ನಿಮಗೆ 18 ವರ್ಷ ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ವಯಸ್ಸಾಗಿರಬೇಕು.";
-            if (lower.includes('ಅರ್ಹತೆ') || lower.includes('ಯಾರು')) return "ಮತದಾರರ ಪಟ್ಟಿಯಲ್ಲಿ ಹೆಸರಿರುವ 18 ವರ್ಷ ಮೇಲ್ಪಟ್ಟ ಯಾವುದೇ ಭಾರತೀಯ ನಾಗರಿಕ ಮತ ಚಲಾಯಿಸಲು ಅರ್ಹರು.";
-            if (lower.includes('nri') || lower.includes('ವಿದೇಶ')) return "ಹೌದು, ಅನಿವಾಸಿ ಭಾರತೀಯರು (NRI) ಸಹ ಮತದಾನ ಮಾಡಬಹುದು, ಆದರೆ ಅವರು ಖುದ್ದಾಗಿ ಬರಬೇಕು.";
-            if (lower.includes('nota') || lower.includes('ನೋಟಾ')) return "NOTA ಅಂದರೆ 'ಮೇಲಿನ ಯಾರೂ ಅಲ್ಲ'. ಯಾವ ಅಭ್ಯರ್ಥಿಯೂ ಸೂಕ್ತವಲ್ಲದಿದ್ದರೆ ನೀವು ಇದನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು.";
-            if (lower.includes('ಐಡಿ') || lower.includes('id') || lower.includes('ದಾಖಲೆ') || lower.includes('ಕಾರ್ಡ್')) return "ಮತದಾನ ಮಾಡಲು ವೋಟರ್ ಐಡಿ (EPIC) ಅಗತ್ಯವಿದೆ. ಇಲ್ಲದಿದ್ದರೆ ಆಧಾರ್ ಅಥವಾ ಪ್ಯಾನ್ ಕಾರ್ಡ್ ಬಳಸಬಹುದು.";
-            if (lower.includes('ನೋಂದಣಿ') || lower.includes('ಫಾರ್ಮ್') || lower.includes('ರಿಜಿಸ್ಟರ್')) return "ಮತದಾರರಾಗಿ ನೋಂದಾಯಿಸಲು voters.eci.gov.in ನಲ್ಲಿ ಫಾರ್ಮ್ 6 ಭರ್ತಿ ಮಾಡಿ.";
-            if (lower.includes('ಸಮಯ') || lower.includes('ಯಾವಾಗ')) return "ಮತದಾನ ಸಾಮಾನ್ಯವಾಗಿ ಬೆಳಿಗ್ಗೆ 7:00 ರಿಂದ ಸಂಜೆ 6:00 ರವರೆಗೆ ಇರುತ್ತದೆ.";
-            return "ಕ್ಷಮಿಸಿ, ನಾನು ಕೇವಲ ಚುನಾವಣೆಗೆ ಸಂಬಂಧಿಸಿದ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಬಲ್ಲೆ.";
-        }
-        else if (lang === 'ml') {
-            if (lower.includes('എവിടെ') || lower.includes('ബൂത്ത്')) return "electoralsearch.eci.gov.in ൽ നിങ്ങളുടെ പോളിംഗ് ബൂത്ത് പരിശോധിക്കാം.";
-            if (lower.includes('എങ്ങനെ') || lower.includes('വോട്ട്')) return "വോട്ട് ചെയ്യാൻ, ബൂത്തിൽ പോയി, ഐഡി കാണിച്ച് EVM-ൽ നീല ബട്ടൺ അമർത്തുക.";
-            if (lower.includes('evm')) return "EVM എന്നാൽ ഇലക്ട്രോണിക് വോട്ടിംഗ് മെഷീൻ.";
-            if (lower.includes('vvpat')) return "VVPAT എന്നത് EVM-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള ഒരു യന്ത്രമാണ്.";
-            if (lower.includes('പ്രായം') || lower.includes('18')) return "വോട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് 18 വയസ്സോ അതിൽ കൂടുതലോ പ്രായമുണ്ടായിരിക്കണം.";
-            if (lower.includes('യോഗ്യത') || lower.includes('ആര്')) return "വോട്ടർ പട്ടികയിൽ പേരുള്ള 18 വയസ്സിനു മുകളിലുള്ള ഏത് ഇന്ത്യൻ പൗരനും വോട്ട് ചെയ്യാൻ അർഹതയുണ്ട്.";
-            if (lower.includes('nri') || lower.includes('വിദേശ')) return "അതെ, പ്രവാസി ഇന്ത്യക്കാർക്കും (NRI) വോട്ട് ചെയ്യാം, പക്ഷേ അവർ നേരിട്ട് വരണം.";
-            if (lower.includes('nota') || lower.includes('നോട്ട')) return "NOTA എന്നാൽ 'മുകളിലുള്ളവരാരുമല്ല' എന്നാണ്. സ്ഥാനാർത്ഥികളാരെയും ഇഷ്ടപ്പെട്ടില്ലെങ്കിൽ ഇത് തിരഞ്ഞെടുക്കാം.";
-            if (lower.includes('ഐഡി') || lower.includes('id') || lower.includes('രേഖകൾ') || lower.includes('കാർഡ്')) return "വോട്ട് ചെയ്യാൻ വോട്ടർ ഐഡി (EPIC) ആവശ്യമാണ്. ഇതില്ലെങ്കിൽ ആധാർ അല്ലെങ്കിൽ പാൻ കാർഡ് ഉപയോഗിക്കാം.";
-            if (lower.includes('രജിസ്റ്റർ') || lower.includes('ഫോം')) return "വോട്ടറായി രജിസ്റ്റർ ചെയ്യാൻ voters.eci.gov.in ൽ ഫോം 6 പൂരിപ്പിക്കുക.";
-            if (lower.includes('സമയം') || lower.includes('എപ്പോൾ')) return "വോട്ടെടുപ്പ് സാധാരണയായി രാവിലെ 7:00 മുതൽ വൈകുന്നേരം 6:00 വരെയാണ്.";
-            return "ക്ഷമിക്കണം, തിരഞ്ഞെടുപ്പ് സംബന്ധിച്ച ചോദ്യങ്ങൾക്ക് മാത്രമേ എനിക്ക് മറുപടി നൽകാൻ കഴിയൂ.";
-        }
-        else if (lang === 'pa') {
-            if (lower.includes('ਕਿੱਥੇ') || lower.includes('ਬੂਥ')) return "ਤੁਸੀਂ electoralsearch.eci.gov.in 'ਤੇ ਆਪਣਾ ਪੋਲਿੰਗ ਬੂਥ ਚੈੱਕ ਕਰ ਸਕਦੇ ਹੋ।";
-            if (lower.includes('ਕਿਵੇਂ') || lower.includes('ਵੋਟ')) return "ਵੋਟ ਪਾਉਣ ਲਈ, ਬੂਥ 'ਤੇ ਜਾਓ, ਆਈਡੀ ਦਿਖਾਓ ਅਤੇ EVM 'ਤੇ ਨੀਲਾ ਬਟਨ ਦਬਾਓ।";
-            if (lower.includes('evm')) return "EVM ਦਾ ਮਤਲਬ ਹੈ ਇਲੈਕਟ੍ਰਾਨਿਕ ਵੋਟਿੰਗ ਮਸ਼ੀਨ।";
-            if (lower.includes('vvpat')) return "VVPAT EVM ਨਾਲ ਜੁੜੀ ਇੱਕ ਮਸ਼ੀਨ ਹੈ।";
-            if (lower.includes('ਉਮਰ') || lower.includes('18')) return "ਵੋਟ ਪਾਉਣ ਲਈ ਤੁਹਾਡੀ ਉਮਰ 18 ਸਾਲ ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।";
-            if (lower.includes('ਯੋਗਤਾ') || lower.includes('ਕੌਣ')) return "18 ਸਾਲ ਤੋਂ ਵੱਧ ਉਮਰ ਦਾ ਕੋਈ ਵੀ ਭਾਰਤੀ ਨਾਗਰਿਕ ਜਿਸਦਾ ਨਾਮ ਵੋਟਰ ਸੂਚੀ ਵਿੱਚ ਹੈ, ਵੋਟ ਪਾਉਣ ਦੇ ਯੋਗ ਹੈ।";
-            if (lower.includes('nri') || lower.includes('ਵਿਦੇਸ਼')) return "ਹਾਂ, ਪ੍ਰਵਾਸੀ ਭਾਰਤੀ (NRI) ਵੀ ਵੋਟ ਪਾ ਸਕਦੇ ਹਨ, ਪਰ ਉਨ੍ਹਾਂ ਨੂੰ ਬੂਥ 'ਤੇ ਆਉਣਾ ਪਵੇਗਾ।";
-            if (lower.includes('nota') || lower.includes('ਨੋਟਾ')) return "NOTA ਦਾ ਮਤਲਬ ਹੈ 'ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ ਕੋਈ ਨਹੀਂ'। ਤੁਸੀਂ ਸਾਰੇ ਉਮੀਦਵਾਰਾਂ ਨੂੰ ਰੱਦ ਕਰਨ ਲਈ NOTA ਚੁਣ ਸਕਦੇ ਹੋ।";
-            if (lower.includes('ਆਈਡੀ') || lower.includes('id') || lower.includes('ਦਸਤਾਵੇਜ਼') || lower.includes('ਕਾਰਡ')) return "ਵੋਟ ਪਾਉਣ ਲਈ ਵੋਟਰ ਆਈਡੀ (EPIC) ਜ਼ਰੂਰੀ ਹੈ। ਇਸ ਦੀ ਬਜਾਏ ਤੁਸੀਂ ਆਧਾਰ ਜਾਂ ਪੈਨ ਕਾਰਡ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।";
-            if (lower.includes('ਰਜਿਸਟਰ') || lower.includes('ਫਾਰਮ')) return "ਵੋਟਰ ਵਜੋਂ ਰਜਿਸਟਰ ਕਰਨ ਲਈ voters.eci.gov.in 'ਤੇ ਫਾਰਮ 6 ਭਰੋ।";
-            if (lower.includes('ਸਮਾਂ') || lower.includes('ਕਦੋਂ')) return "ਵੋਟਾਂ ਪੈਣ ਦਾ ਸਮਾਂ ਆਮ ਤੌਰ 'ਤੇ ਸਵੇਰੇ 7:00 ਤੋਂ ਸ਼ਾਮ 6:00 ਵਜੇ ਤੱਕ ਹੁੰਦਾ ਹੈ।";
-            return "ਮੁਆਫ ਕਰਨਾ, ਮੈਂ ਸਿਰਫ਼ ਚੋਣਾਂ ਨਾਲ ਸਬੰਧਤ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦੇ ਸਕਦਾ ਹਾਂ।";
-        }
-        else if (lang === 'hi') {
-            if (lower.includes('कहाँ') || lower.includes('बूथ')) return "आप अपना पोलिंग बूथ चुनाव आयोग की वेबसाइट electoralsearch.eci.gov.in पर चेक कर सकते हैं।";
-            if (lower.includes('कैसे') && lower.includes('वोट')) return "वोट देने के लिए पोलिंग बूथ जाएं, अपनी पहचान दिखाएं और EVM पर अपने उम्मीदवार के सामने वाला नीला बटन दबाएं।";
-            if (lower.includes('evm')) return "EVM का मतलब है इलेक्ट्रॉनिक वोटिंग मशीन। इसके जरिए बटन दबाकर वोट डाला जाता है।";
-            if (lower.includes('vvpat')) return "VVPAT एक मशीन है जो EVM के साथ लगी होती है। बटन दबाने के बाद यह एक पर्ची दिखाती है जिससे आप अपना वोट चेक कर सकते हैं।";
-            if (lower.includes('उम्र') || lower.includes('18')) return "वोट देने के लिए आपकी उम्र 18 साल या ज्यादा होनी चाहिए।";
-            if (lower.includes('योग्यता') || lower.includes('कौन')) return "भारत का कोई भी नागरिक जिसकी उम्र 18 वर्ष से अधिक हो और जिसका नाम वोटर लिस्ट में हो, वह वोट दे सकता है।";
-            if (lower.includes('nri') || lower.includes('एनआरआई') || lower.includes('विदेश')) return "हाँ, अनिवासी भारतीय (NRI) भी वोट कर सकते हैं, लेकिन उन्हें वोट डालने के लिए भारत में अपने मतदान केंद्र पर आना होगा।";
-            if (lower.includes('nota') || lower.includes('नोटा')) return "NOTA का मतलब है 'इनमें से कोई नहीं'। यदि आपको कोई उम्मीदवार पसंद नहीं है, तो आप NOTA दबा सकते हैं।";
-            if (lower.includes('पहचान') || lower.includes('आईडी') || lower.includes('id') || lower.includes('दस्तावेज़')) return "वोट देने के लिए वोटर आईडी (EPIC) जरूरी है। इसके न होने पर आप आधार, पैन कार्ड या ड्राइविंग लाइसेंस भी दिखा सकते हैं।";
-            if (lower.includes('रजिस्टर') || lower.includes('पंजीकरण') || lower.includes('फॉर्म')) return "वोटर रजिस्टर करने के लिए voters.eci.gov.in पर ऑनलाइन फॉर्म 6 भरें या वोटर हेल्पलाइन ऐप का इस्तेमाल करें।";
-            if (lower.includes('समय') || lower.includes('कितने बजे')) return "मतदान का समय सुबह 7:00 बजे से शाम 6:00 बजे तक होता है। कृपया अपने बूथ का समय चेक करें।";
-            return "माफ़ करें, मैं अभी केवल चुनाव से जुड़े सामान्य सवालों के जवाब दे सकता हूँ।";
-        } else {
-            if (lower.includes('where') || lower.includes('booth')) return "You can check your polling booth on the ECI website at electoralsearch.eci.gov.in.";
-            if (lower.includes('how') && lower.includes('vote')) return "To vote, go to the booth, show your ID, and press the blue button next to your candidate on the EVM.";
-            if (lower.includes('evm')) return "EVM stands for Electronic Voting Machine. You use it to cast your vote by pressing a button.";
-            if (lower.includes('vvpat')) return "VVPAT is a machine attached to the EVM. It shows a paper slip to confirm who you voted for.";
-            if (lower.includes('age') || lower.includes('18') || lower.includes('old')) return "You must be 18 years or older to vote.";
-            if (lower.includes('eligible') || lower.includes('who')) return "Any Indian citizen above 18 years of age whose name is on the electoral roll is eligible to vote.";
-            if (lower.includes('nri') || lower.includes('abroad')) return "Yes, Non-Resident Indians (NRIs) can vote, but they must be physically present at their polling booth in India.";
-            if (lower.includes('nota')) return "NOTA means 'None Of The Above'. It allows you to reject all candidates if you do not find any suitable.";
-            if (lower.includes('id') || lower.includes('document') || lower.includes('proof')) return "You need your Voter ID (EPIC) to vote. If you don't have it, you can use Aadhaar, PAN card, Passport, or Driving License.";
-            if (lower.includes('register') || lower.includes('form') || lower.includes('enroll')) return "To register as a voter, fill out Form 6 online at voters.eci.gov.in or use the Voter Helpline App.";
-            if (lower.includes('time') || lower.includes('hours') || lower.includes('morning')) return "Polling usually takes place from 7:00 AM to 6:00 PM. Please check your local booth for exact timings.";
-            return "I'm sorry, I can only answer general election related questions right now.";
-        }
-    }��ಂತ ಹೆಚ್ಚಿನ ವಯಸ್ಸಾಗಿರಬೇಕು.";
-            if (lower.includes('ಅರ್ಹತೆ') || lower.includes('ಯಾರು')) return "ಮತದಾರರ ಪಟ್ಟಿಯಲ್ಲಿ ಹೆಸರಿರುವ 18 ವರ್ಷ ಮೇಲ್ಪಟ್ಟ ಯಾವುದೇ ಭಾರತೀಯ ನಾಗರಿಕ ಮತ ಚಲಾಯಿಸಲು ಅರ್ಹರು.";
-            if (lower.includes('nri') || lower.includes('ವಿದೇಶ')) return "ಹೌದು, ಅನಿವಾಸಿ ಭಾರತೀಯರು (NRI) ಸಹ ಮತದಾನ ಮಾಡಬಹುದು, ಆದರೆ ಅವರು ಖುದ್ದಾಗಿ ಬರಬೇಕು.";
-            return "ಕ್ಷಮಿಸಿ, ನಾನು ಕೇವಲ ಚುನಾವಣೆಗೆ ಸಂಬಂಧಿಸಿದ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಬಲ್ಲೆ.";
-        }
-        else if (lang === 'ml') {
-            if (lower.includes('എവിടെ') || lower.includes('ബൂത്ത്')) return "electoralsearch.eci.gov.in ൽ നിങ്ങളുടെ പോളിംഗ് ബൂത്ത് പരിശോധിക്കാം.";
-            if (lower.includes('എങ്ങനെ') || lower.includes('വോട്ട്')) return "വോട്ട് ചെയ്യാൻ, ബൂത്തിൽ പോയി, ഐഡി കാണിച്ച് EVM-ൽ നീല ബട്ടൺ അമർത്തുക.";
-            if (lower.includes('evm')) return "EVM എന്നാൽ ഇലക്ട്രോണിക് വോട്ടിംഗ് മെഷീൻ.";
-            if (lower.includes('vvpat')) return "VVPAT എന്നത് EVM-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള ഒരു യന്ത്രമാണ്.";
-            if (lower.includes('പ്രായം') || lower.includes('18')) return "വോട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് 18 വയസ്സോ അതിൽ കൂടുതലോ പ്രായമുണ്ടായിരിക്കണം.";
-            if (lower.includes('യോഗ്യത') || lower.includes('ആര്')) return "വോട്ടർ പട്ടികയിൽ പേരുള്ള 18 വയസ്സിനു മുകളിലുള്ള ഏത് ഇന്ത്യൻ പൗരനും വോട്ട് ചെയ്യാൻ അർഹതയുണ്ട്.";
-            if (lower.includes('nri') || lower.includes('വിദേശ')) return "അതെ, പ്രവാസി ഇന്ത്യക്കാർക്കും (NRI) വോട്ട് ചെയ്യാം, പക്ഷേ അവർ നേരിട്ട് വരണം.";
-            return "ക്ഷമിക്കണം, തിരഞ്ഞെടുപ്പ് സംബന്ധിച്ച ചോദ്യങ്ങൾക്ക് മാത്രമേ എനിക്ക് മറുപടി നൽകാൻ കഴിയൂ.";
-        }
-        else if (lang === 'pa') {
-            if (lower.includes('ਕਿੱਥੇ') || lower.includes('ਬੂਥ')) return "ਤੁਸੀਂ electoralsearch.eci.gov.in 'ਤੇ ਆਪਣਾ ਪੋਲਿੰਗ ਬੂਥ ਚੈੱਕ ਕਰ ਸਕਦੇ ਹੋ।";
-            if (lower.includes('ਕਿਵੇਂ') || lower.includes('ਵੋਟ')) return "ਵੋਟ ਪਾਉਣ ਲਈ, ਬੂਥ 'ਤੇ ਜਾਓ, ਆਈਡੀ ਦਿਖਾਓ ਅਤੇ EVM 'ਤੇ ਨੀਲਾ ਬਟਨ ਦਬਾਓ।";
-            if (lower.includes('evm')) return "EVM ਦਾ ਮਤਲਬ ਹੈ ਇਲੈਕਟ੍ਰਾਨਿਕ ਵੋਟਿੰਗ ਮਸ਼ੀਨ।";
-            if (lower.includes('vvpat')) return "VVPAT EVM ਨਾਲ ਜੁੜੀ ਇੱਕ ਮਸ਼ੀਨ ਹੈ।";
-            if (lower.includes('ਉਮਰ') || lower.includes('18')) return "ਵੋਟ ਪਾਉਣ ਲਈ ਤੁਹਾਡੀ ਉਮਰ 18 ਸਾਲ ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।";
-            if (lower.includes('ਯੋਗਤਾ') || lower.includes('ਕੌਣ')) return "18 ਸਾਲ ਤੋਂ ਵੱਧ ਉਮਰ ਦਾ ਕੋਈ ਵੀ ਭਾਰਤੀ ਨਾਗਰਿਕ ਜਿਸਦਾ ਨਾਮ ਵੋਟਰ ਸੂਚੀ ਵਿੱਚ ਹੈ, ਵੋਟ ਪਾਉਣ ਦੇ ਯੋਗ ਹੈ।";
-            if (lower.includes('nri') || lower.includes('ਵਿਦੇਸ਼')) return "ਹਾਂ, ਪ੍ਰਵਾਸੀ ਭਾਰਤੀ (NRI) ਵੀ ਵੋਟ ਪਾ ਸਕਦੇ ਹਨ, ਪਰ ਉਨ੍ਹਾਂ ਨੂੰ ਬੂਥ 'ਤੇ ਆਉਣਾ ਪਵੇਗਾ।";
-            return "ਮੁਆਫ ਕਰਨਾ, ਮੈਂ ਸਿਰਫ਼ ਚੋਣਾਂ ਨਾਲ ਸਬੰਧਤ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦੇ ਸਕਦਾ ਹਾਂ।";
-        }
-        else if (lang === 'hi') {
-            if (lower.includes('कहाँ') || lower.includes('बूथ')) return "आप अपना पोलिंग बूथ चुनाव आयोग की वेबसाइट electoralsearch.eci.gov.in पर चेक कर सकते हैं।";
-            if (lower.includes('कैसे') && lower.includes('वोट')) return "वोट देने के लिए पोलिंग बूथ जाएं, अपनी पहचान दिखाएं और EVM पर अपने उम्मीदवार के सामने वाला नीला बटन दबाएं।";
-            if (lower.includes('evm')) return "EVM का मतलब है इलेक्ट्रॉनिक वोटिंग मशीन। इसके जरिए बटन दबाकर वोट डाला जाता है।";
-            if (lower.includes('vvpat')) return "VVPAT एक मशीन है जो EVM के साथ लगी होती है। बटन दबाने के बाद यह एक पर्ची दिखाती है जिससे आप अपना वोट चेक कर सकते हैं।";
-            if (lower.includes('उम्र') || lower.includes('18')) return "वोट देने के लिए आपकी उम्र 18 साल या उससे ज्यादा होनी चाहिए।";
-            if (lower.includes('योग्यता') || lower.includes('कौन')) return "भारत का कोई भी नागरिक जिसकी उम्र 18 वर्ष से अधिक हो और जिसका नाम वोटर लिस्ट में हो, वह वोट दे सकता है।";
-            if (lower.includes('nri') || lower.includes('एनआरआई') || lower.includes('विदेश')) return "हाँ, अनिवासी भारतीय (NRI) भी वोट कर सकते हैं, लेकिन उन्हें वोट डालने के लिए भारत में अपने मतदान केंद्र पर आना होगा।";
-            return "माफ़ करें, मैं अभी केवल चुनाव से जुड़े सामान्य सवालों के जवाब दे सकता हूँ।";
-        } else {
-            if (lower.includes('where') || lower.includes('booth')) return "You can check your polling booth on the ECI website at electoralsearch.eci.gov.in.";
-            if (lower.includes('how') && lower.includes('vote')) return "To vote, go to the booth, show your ID, and press the blue button next to your candidate on the EVM.";
-            if (lower.includes('evm')) return "EVM stands for Electronic Voting Machine. You use it to cast your vote by pressing a button.";
-            if (lower.includes('vvpat')) return "VVPAT is a machine attached to the EVM. It shows a paper slip to confirm who you voted for.";
-            if (lower.includes('age') || lower.includes('18') || lower.includes('old')) return "You must be 18 years or older to vote.";
-            if (lower.includes('eligible') || lower.includes('who')) return "Any Indian citizen above 18 years of age whose name is on the electoral roll is eligible to vote.";
-            if (lower.includes('nri') || lower.includes('abroad')) return "Yes, Non-Resident Indians (NRIs) can vote, but they must be physically present at their polling booth in India.";
-            return "I'm sorry, I can only answer general election related questions right now.";
-        }
-    }
+// ─── GUIDE DATA ───
+const guideData = {
+  en: [
+    { icon:'📱', title:'Step 1: Check if you\'re registered', body:'Go to voterportal.eci.gov.in or download the Voter Helpline App. Search your name in the electoral roll. You need to be 18+ and an Indian citizen.' },
+    { icon:'🪪', title:'Step 2: Get your Voter ID', body:'Apply online at voterportal.eci.gov.in or visit your nearest BLO (Booth Level Officer). Submit your Aadhaar, address proof, and photo. Voter ID will be delivered to your home.' },
+    { icon:'📍', title:'Step 3: Find your polling booth', body:'Visit electoralsearch.eci.gov.in and enter your details to find your booth address, booth number, and serial number on the voter list.' },
+    { icon:'🧳', title:'Step 4: What to carry on polling day', body:'Carry your Voter ID card or any of these: Aadhaar, Passport, Driving License, PAN card, MNREGA job card, or bank passbook with photo.' },
+    { icon:'🗳️', title:'Step 5: How to use EVM', body:'Enter the polling booth, show your ID, get your finger inked, and press the blue button next to your chosen candidate\'s name and symbol on the EVM machine.' },
+    { icon:'📄', title:'Step 6: VVPAT confirmation', body:'After pressing the button, a VVPAT machine shows a paper slip for 7 seconds showing the party symbol and name you voted for. This confirms your vote was recorded correctly.' }
+  ],
+  hi: [
+    { icon:'📱', title:'चरण 1: जांचें कि आप पंजीकृत हैं', body:'voterportal.eci.gov.in पर जाएं या Voter Helpline App डाउनलोड करें। मतदाता सूची में अपना नाम खोजें। आपकी उम्र 18+ होनी चाहिए।' },
+    { icon:'🪪', title:'चरण 2: मतदाता पहचान पत्र प्राप्त करें', body:'voterportal.eci.gov.in पर ऑनलाइन आवेदन करें या अपने नजदीकी BLO से मिलें। आधार, पता प्रमाण और फोटो जमा करें।' },
+    { icon:'📍', title:'चरण 3: अपना मतदान केंद्र खोजें', body:'electoralsearch.eci.gov.in पर जाएं और अपना मतदान केंद्र पता, बूथ नंबर खोजें।' },
+    { icon:'🧳', title:'चरण 4: मतदान दिवस पर क्या लाएं', body:'मतदाता पहचान पत्र या आधार, पासपोर्ट, ड्राइविंग लाइसेंस, पैन कार्ड में से कोई एक लाएं।' },
+    { icon:'🗳️', title:'चरण 5: EVM का उपयोग कैसे करें', body:'मतदान केंद्र में प्रवेश करें, अपनी उंगली पर स्याही लगवाएं, और EVM पर अपने पसंदीदा उम्मीदवार के नाम के सामने नीला बटन दबाएं।' },
+    { icon:'📄', title:'चरण 6: VVPAT पुष्टि', body:'बटन दबाने के बाद VVPAT मशीन 7 सेकंड के लिए एक पर्ची दिखाती है जो आपके वोट की पुष्टि करती है।' }
+  ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    features.init();
-});
+function renderGuide() {
+  const lang = isHindi ? 'hi' : 'en';
+  const data = guideData[lang];
+  document.getElementById('guideCards').innerHTML = data.map(g => `
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="guide-icon">${g.icon}</span>
+        <span class="guide-title">${g.title}</span>
+      </div>
+      <div class="guide-body">${g.body}</div>
+      <button class="read-aloud-btn" onclick="speak('${g.body.replace(/'/g,"\\'")}')">🔊 Read Aloud</button>
+    </div>
+  `).join('');
+}
+renderGuide();
 
-window.features = features;
-
-const speechAPI = {
-    recognition: null,
-    synthesis: window.speechSynthesis,
-    isListening: false,
-
-    init() {
-        this.cacheDOM();
-        this.bindEvents();
-        this.initRecognition();
-    },
-
-    cacheDOM() {
-        this.voiceBtn = document.getElementById('voice-btn');
-        this.voiceModal = document.getElementById('voice-modal');
-        this.closeModalBtn = document.getElementById('close-voice-modal');
-        this.voiceStatus = document.getElementById('voice-status');
-        this.voiceTranscript = document.getElementById('voice-transcript');
-        this.soundWave = document.getElementById('sound-wave');
-        this.langSelect = document.getElementById('voice-lang-select');
-    },
-
-    bindEvents() {
-        this.voiceBtn.addEventListener('click', () => {
-            this.startListening();
-        });
-
-        this.closeModalBtn.addEventListener('click', () => {
-            this.stopAll();
-        });
-    },
-
-    initRecognition() {
-        // Vendor prefixes for SpeechRecognition
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            console.warn("Speech Recognition API not supported in this browser.");
-            return;
-        }
-
-        this.recognition = new SpeechRecognition();
-        this.recognition.continuous = false;
-        this.recognition.interimResults = true;
-
-        this.recognition.onstart = () => {
-            this.isListening = true;
-            this.showModal();
-            this.updateStatus(window.translations[window.app.currentLang].listeningStatus);
-            this.voiceTranscript.textContent = '';
-            this.soundWave.classList.add('hidden');
-        };
-
-        this.recognition.onresult = (event) => {
-            let interimTranscript = '';
-            let finalTranscript = '';
-
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
-                    finalTranscript += event.results[i][0].transcript;
-                } else {
-                    interimTranscript += event.results[i][0].transcript;
-                }
-            }
-
-            this.voiceTranscript.textContent = finalTranscript || interimTranscript;
-        };
-
-        this.recognition.onerror = (event) => {
-            console.error("Speech recognition error", event.error);
-            this.stopAll();
-        };
-
-        this.recognition.onend = () => {
-            this.isListening = false;
-            const text = this.voiceTranscript.textContent.trim();
-            if (text) {
-                this.processSpeechInput(text);
-            } else {
-                this.hideModal();
-            }
-        };
-    },
-
-    startListening() {
-        if (!this.recognition) {
-            alert("Voice features are not supported in your browser. Please try Chrome.");
-            return;
-        }
-
-        // Set language based on current selection
-        this.recognition.lang = this.langSelect.value || (window.app.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-        
-        try {
-            this.recognition.start();
-        } catch (e) {
-            console.error(e);
-        }
-    },
-
-    showModal() {
-        this.voiceModal.classList.remove('hidden');
-    },
-
-    hideModal() {
-        this.voiceModal.classList.add('hidden');
-    },
-
-    updateStatus(statusKey) {
-        // Direct string pass or i18n lookup
-        this.voiceStatus.textContent = statusKey;
-    },
-
-    processSpeechInput(text) {
-        this.updateStatus(window.translations[window.app.currentLang].processingStatus);
-        
-        // Use the same mock bot reply logic from chat
-        setTimeout(() => {
-            const reply = window.features.getMockBotReply(text);
-            this.voiceTranscript.textContent = reply;
-            this.speakReply(reply);
-        }, 1000);
-    },
-
-    speakReply(text) {
-        this.updateStatus(window.translations[window.app.currentLang].speakingStatus);
-        this.soundWave.classList.remove('hidden');
-
-        // Cancel any ongoing speech
-        this.synthesis.cancel();
-
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = this.langSelect.value || (window.app.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-        
-        utterance.onend = () => {
-            setTimeout(() => {
-                this.hideModal();
-                this.soundWave.classList.add('hidden');
-            }, 1500); // Wait a bit before closing
-        };
-
-        utterance.onerror = () => {
-            this.hideModal();
-            this.soundWave.classList.add('hidden');
-        };
-
-        this.synthesis.speak(utterance);
-    },
-
-    // For generic text-to-speech (used in Guide)
-    speak(text, btnElement) {
-        if (btnElement) {
-            // Cancel if already speaking
-            if (this.synthesis.speaking) {
-                this.synthesis.cancel();
-                document.querySelectorAll('.read-aloud-btn').forEach(btn => btn.classList.remove('playing'));
-                return;
-            }
-
-            btnElement.classList.add('playing');
-        }
-
-        this.synthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = window.app.currentLang === 'hi' ? 'hi-IN' : 'en-IN';
-        
-        utterance.onend = () => {
-            if (btnElement) btnElement.classList.remove('playing');
-        };
-
-        utterance.onerror = () => {
-            if (btnElement) btnElement.classList.remove('playing');
-        };
-
-        this.synthesis.speak(utterance);
-    },
-
-    stopAll() {
-        if (this.isListening && this.recognition) {
-            this.recognition.stop();
-        }
-        if (this.synthesis.speaking) {
-            this.synthesis.cancel();
-        }
-        this.hideModal();
-    }
+// ─── CHECKLIST ───
+const checklistData = {
+  en: [
+    '📋 Register on voter portal (voterportal.eci.gov.in)',
+    '🔍 Check my name on electoral roll',
+    '🪪 Get Voter ID card',
+    '📍 Find my polling booth address',
+    '🧳 Keep valid ID ready for polling day',
+    '👨‍👩‍👧 Tell my family members to vote too'
+  ],
+  hi: [
+    '📋 मतदाता पोर्टल पर पंजीकरण करें',
+    '🔍 मतदाता सूची में अपना नाम जांचें',
+    '🪪 मतदाता पहचान पत्र प्राप्त करें',
+    '📍 अपना मतदान केंद्र पता खोजें',
+    '🧳 मतदान दिवस के लिए वैध आईडी तैयार रखें',
+    '👨‍👩‍👧 परिवार के सदस्यों को भी वोट देने के लिए कहें'
+  ]
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    speechAPI.init();
-});
+let checked = JSON.parse(localStorage.getItem('voteChecklist') || '[]');
 
-window.speechAPI = speechAPI;
+function renderChecklist() {
+  const lang = isHindi ? 'hi' : 'en';
+  const items = checklistData[lang];
+  document.getElementById('checklistItems').innerHTML = items.map((item, i) => `
+    <div class="check-item ${checked.includes(i) ? 'checked' : ''}" onclick="toggleCheck(${i})">
+      <div class="check-box">${checked.includes(i) ? '✓' : ''}</div>
+      <span class="check-text">${item}</span>
+    </div>
+  `).join('');
+  updateProgress();
+}
 
+function toggleCheck(i) {
+  if (checked.includes(i)) checked = checked.filter(x => x !== i);
+  else checked.push(i);
+  localStorage.setItem('voteChecklist', JSON.stringify(checked));
+  renderChecklist();
+}
 
+function updateProgress() {
+  const total = 6;
+  const done = checked.length;
+  const pct = (done / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = isHindi
+    ? `${done} में से ${total} काम पूरे`
+    : `${done} of ${total} tasks completed`;
+  document.getElementById('celebration').style.display = done === total ? 'block' : 'none';
+}
+renderChecklist();
+
+// ─── VOICE ASSISTANT ───
+let recognition = null;
+let isListening = false;
+let synth = window.speechSynthesis;
+
+function toggleVoice() {
+  if (isListening) stopListening();
+  else startListening();
+}
+
+function startListening() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    document.getElementById('voiceStatus').textContent = '❌ Voice not supported in this browser. Use Chrome!';
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'hi-IN'; // Primary language, but recognises all Indian languages too
+  recognition.maxAlternatives = 1;  recognition.onstart = () => {
+    isListening = true;
+    document.getElementById('voiceBtn').classList.add('listening');
+    document.getElementById('voiceBtn').textContent = '⏹️';
+    document.getElementById('voiceStatus').textContent = isHindi ? '🎙️ सुन रहा हूं...' : '🎙️ Listening...';
+  };
+  recognition.onresult = (e) => {
+    const text = e.results[0][0].transcript;
+    document.getElementById('voiceStatus').textContent = `"${text}"`;
+    voiceAsk(text);
+  };
+  recognition.onerror = () => {
+    document.getElementById('voiceStatus').textContent = isHindi ? '❌ कृपया फिर कोशिश करें' : '❌ Could not hear. Try again!';
+    stopListening();
+  };
+  recognition.onend = () => stopListening();
+  recognition.start();
+}
+
+function stopListening() {
+  isListening = false;
+  if (recognition) recognition.stop();
+  document.getElementById('voiceBtn').classList.remove('listening');
+  document.getElementById('voiceBtn').textContent = '🎙️';
+}
+
+function detectLang(text) {
+  // Detect script/language from text
+  if (/[\u0900-\u097F]/.test(text)) return { code: 'hi-IN', name: 'Hindi', instruction: 'Answer in Hindi only.' };
+  if (/[\u0C00-\u0C7F]/.test(text)) return { code: 'te-IN', name: 'Telugu', instruction: 'Answer in Telugu only.' };
+  if (/[\u0B80-\u0BFF]/.test(text)) return { code: 'ta-IN', name: 'Tamil', instruction: 'Answer in Tamil only.' };
+  if (/[\u0C80-\u0CFF]/.test(text)) return { code: 'kn-IN', name: 'Kannada', instruction: 'Answer in Kannada only.' };
+  if (/[\u0D00-\u0D7F]/.test(text)) return { code: 'ml-IN', name: 'Malayalam', instruction: 'Answer in Malayalam only.' };
+  if (/[\u0A80-\u0AFF]/.test(text)) return { code: 'gu-IN', name: 'Gujarati', instruction: 'Answer in Gujarati only.' };
+  if (/[\u0A00-\u0A7F]/.test(text)) return { code: 'pa-IN', name: 'Punjabi', instruction: 'Answer in Punjabi only.' };
+  if (/[\u0980-\u09FF]/.test(text)) return { code: 'bn-IN', name: 'Bengali', instruction: 'Answer in Bengali only.' };
+  if (/[\u0B00-\u0B7F]/.test(text)) return { code: 'or-IN', name: 'Odia', instruction: 'Answer in Odia only.' };
+  // If app is in Hindi mode and no specific script detected, answer in Hindi
+  if (isHindi) return { code: 'hi-IN', name: 'Hindi', instruction: 'Answer in Hindi only.' };
+  return { code: 'en-IN', name: 'English', instruction: 'Answer in simple English.' };
+}
+
+async function voiceAsk(question) {
+  const answerBox = document.getElementById('voiceAnswer');
+  answerBox.style.display = 'block';
+  answerBox.textContent = isHindi ? 'सोच रहा हूं...' : 'Thinking...';
+  const lang = detectLang(question);
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are a helpful Indian election assistant. Answer questions about India's election process, voter registration, EVMs, VVPAT, the Model Code of Conduct, Lok Sabha, Vidhan Sabha, and voting procedures. Keep answers short (3-4 sentences), simple, and easy to understand. IMPORTANT: ${lang.instruction} Do not use any other language in your response.`,
+        messages: [{ role: 'user', content: question }]
+      })
+    });
+    const data = await res.json();
+    const answer = data.content?.[0]?.text || (isHindi ? 'कृपया फिर कोशिश करें।' : 'Sorry, please try again.');
+    answerBox.textContent = answer;
+    speakInLang(answer, lang.code);
+  } catch(e) {
+    answerBox.textContent = isHindi ? 'कनेक्शन त्रुटि। फिर कोशिश करें।' : 'Connection error. Please try again.';
+  }
+}
+
+function speak(text) {
+  speakInLang(text, isHindi ? 'hi-IN' : 'en-IN');
+}
+
+function speakInLang(text, langCode) {
+  if (!synth) return;
+  synth.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = langCode;
+  utterance.rate = 0.9;
+  synth.speak(utterance);
+}
+
+// ─── CHAT ───
+async function sendChat(question) {
+  const input = document.getElementById('chatInput');
+  const q = question || input.value.trim();
+  if (!q) return;
+  input.value = '';
+  const msgs = document.getElementById('chatMessages');
+  msgs.innerHTML += `<div class="msg user">${q}</div>`;
+  const loadId = 'load_' + Date.now();
+  msgs.innerHTML += `<div class="msg bot loading" id="${loadId}">Thinking... 🤔</div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+  const lang = detectLang(q);
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are a friendly Indian election assistant. Answer questions about India's election process clearly and simply. Keep answers concise (3-5 sentences). IMPORTANT: ${lang.instruction} Do not use any other language in your response.`,
+        messages: [{ role: 'user', content: q }]
+      })
+    });
+    const data = await res.json();
+    const answer = data.content?.[0]?.text || (isHindi ? 'कृपया फिर कोशिश करें।' : 'Sorry, please try again.');
+    const el = document.getElementById(loadId);
+    if (el) { el.textContent = answer; el.classList.remove('loading'); }
+  } catch(e) {
+    const el = document.getElementById(loadId);
+    if (el) { el.textContent = isHindi ? 'कनेक्शन त्रुटि।' : 'Connection error. Please try again.'; el.classList.remove('loading'); }
+  }
+  msgs.scrollTop = msgs.scrollHeight;
+}
 </script>
 </body>
 </html>
